@@ -96,7 +96,7 @@ recursively.
 - 2- And game mode (single-player vs. computer or two-players). 
 
 ***RULES:***
-- Players take turns dropping discs into columns full columns must be reselected. After each move, the 
-screen refreshes and displays the updated board. 
+- Players take turns dropping discs into columns. (Full columns must be reselected)
+- After each move, the screen refreshes and displays the updated board. 
 - The game ends when a player connects four discs, the board fills (draw), or one player quits (forfeit). 
 - In single-player mode, the computer’s moves may be generated randomly or via AI algorithms such as Minimax or Alpha Beta Pruning, optionally supported by a heuristic evaluation function. 
