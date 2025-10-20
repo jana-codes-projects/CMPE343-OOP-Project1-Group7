@@ -40,25 +40,8 @@ public class Main {
                 "[3] Return to Main Menu");
         System.out.print("Please select a number corresponding with your choice: ");
     }
-
-    public static int GetArraySize(short ith_array)
-    {
-        int size = 0;
-        Scanner input = new Scanner(System.in);
-        do {
-            if (ith_array == 0)
-                System.out.print("\nEnter the size of the array: ");
-            else
-                System.out.print("\nEnter the size of array " + ith_array + ": ");
-
-            size = input.nextInt();
-            input.nextLine(); // to remove "ENTER" key buffer
-            if (size < 1)
-                System.out.println("Invalid input!");
-        } while (size < 1);
-        return size;
-    }
-
+    
+    /*--------------------------------------------------SubMenu C: Part 1----------------------------------------------------*/
     public static void StatisticalArray()
     {
         int size = GetArraySize((short)0);
@@ -85,15 +68,32 @@ public class Main {
         System.out.println("The harmonic mean of the array is: " + Harmonic_mean);
     }
 
+    public static int GetArraySize(short ith_array)
+    {
+        int size = 0;
+        Scanner input = new Scanner(System.in);
+        do {
+            if (ith_array == 0)
+                System.out.print("\nEnter the size of the array: ");
+            else
+                System.out.print("\nEnter the size of array " + ith_array + ": ");
+
+            size = input.nextInt();
+            input.nextLine(); // to remove "ENTER" key buffer
+            if (size < 1)
+                System.out.println("Invalid input!");
+        } while (size < 1);
+        return size;
+    }
+
     static public void DisplayArray(double[] arr)
     {
         for (double element : arr)
             System.out.print(element + " ");
         System.out.println();
     }
-
-
-    public static double ArrayMedian(double[] arr, int size)
+    
+    public static double ArrayMedian(double[] arr, int size) // NOT DONE
     {
         double median = 0;
         // sort array
@@ -128,7 +128,7 @@ public class Main {
         return avg;
     }
 
-    public static double HarmonicMean(double[] arr, int size)
+    public static double HarmonicMean(double[] arr, int size) // SHOULD BE DONE RECURSIVELY
     {
         double avg = 0;
         for (double element : arr)
@@ -140,13 +140,7 @@ public class Main {
         return avg;
     }
 
-    static public void DisplayArray(short[] arr)
-    {
-        for (short element : arr)
-            System.out.print(element + " ");
-        System.out.println();
-    }
-
+    /*--------------------------------------------------SubMenu C: Part 2----------------------------------------------------*/
     public static void TwoArraysDistance()
     {
         int size1 = GetArraySize((short)1);
@@ -154,40 +148,69 @@ public class Main {
         short[] arr1 = new short[size1];
         short[] arr2 = new short[size2];
 
-
-        Scanner input = new Scanner(System.in);
-
+        
         System.out.println("Proceed with entering " + size1 + " number(s) for the first array (integers 0 to 9): ");
-        for (int i = 0; i < size1; i++)
-        {
-            arr1[i] = input.nextShort();
-            if (arr1[i] > 9 || arr1[i] < 0)
-            {
-                System.out.println("Invalid input. Try again!");
-                i--;
-            }
-            input.nextLine(); // to remove "ENTER" key buffer
-        }
+        GetArrayElements(arr1, size1);
 
         System.out.println("Proceed with entering " + size2 + " number(s) for the second array (integers 0 to 9): ");
-        for (int i = 0; i < size2; i++)
-        {
-            arr2[i] = input.nextShort();
-            if (arr2[i] > 9 || arr1[i] < 0)
-            {
-                System.out.println("Invalid input. Try again!");
-                i--;
-            }
-            input.nextLine(); // to remove "ENTER" key buffer
-        }
+        GetArrayElements(arr2, size2);
 
         DisplayArray(arr1);
         DisplayArray(arr2);
 
+        int manhattan_distance = ManhattanDistance(arr1, arr2, size1, size2);
+        int euclidean_distance = EuclideanDistance(arr1, arr2, size1, size2);
+        int cosine_distance = CosineDistance(arr1, arr2, size1, size2);
 
-
+        System.out.println("The manhattan distance of the two arrays is: " + manhattan_distance);
+        System.out.println("The euclidean distance of the two arrays is: " + euclidean_distance);
+        System.out.println("The cosine distance of the two arrays is: " + cosine_distance);
+        
     }
 
+    static public void DisplayArray(short[] arr)
+    {
+        for (short element : arr)
+            System.out.print(element + " ");
+        System.out.println();
+    }
+
+    public static void GetArrayElements(short[] arr, int size)
+    {
+        Scanner input = new Scanner(System.in);
+        
+        for (int i = 0; i < size; i++)
+        {
+            arr[i] = input.nextShort();
+            if (arr[i] > 9 || arr[i] < 0)
+            {
+                System.out.println("Invalid input. Try again!");
+                i--;
+            }
+            input.nextLine(); // to remove "ENTER" key buffer
+        }
+    }
+
+    public static int ManhattanDistance(short[] a1, short[] a2, int size1, int size2)
+    {
+        int ans = 0;
+
+        return ans;
+    }
+
+    public static int EuclideanDistance(short[] a1, short[] a2, int size1, int size2)
+    {
+        int ans = 0;
+        return ans;
+    }
+
+    public static int CosineDistance(short[] a1, short[] a2, int size1, int size2)
+    {
+        int ans = 0;
+        return ans;
+    }
+
+    /*--------------------------------------------------MAIN FUNCTION----------------------------------------------------*/
     public static void main(String[] args)
     {
         WelcomeScreen();
@@ -243,7 +266,6 @@ public class Main {
                     System.out.println("\nYou entered an invalid choice. Try again!\n");
             }
         } while (!ValidSubmenu(letter));
-
-
+        
     }
 }
