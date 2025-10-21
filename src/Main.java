@@ -1,7 +1,9 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
+    // Displays a welcome screen of the project
     public static void WelcomeScreen()
     {
         System.out.println("******************************************");
@@ -14,6 +16,7 @@ public class Main {
         System.out.println("******************************************\n");
     }
 
+    // Displays Main Menu
     public static void PrintMainMenu()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN MENU ~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -25,6 +28,7 @@ public class Main {
         System.out.print("Please select a letter corresponding with your submenu choice: ");
     }
 
+    // Checks if the user input is valid for a submenu
     public static boolean ValidSubmenu(char c)
     {
         if (c == 'a' || c == 'b' || c == 'c' || c == 'd' || c == 'e')
@@ -32,6 +36,14 @@ public class Main {
         return false;
     }
 
+    // Supposedly clears console on cmd 
+    public static void clearScreen()
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    // Displays Submenu (Option) C 
     public static void PrintSubmenuC()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~ SUBMENU C ~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -40,11 +52,12 @@ public class Main {
                 "[3] Return to Main Menu");
         System.out.print("Please select a number corresponding with your choice: ");
     }
-    
+
     /*--------------------------------------------------SubMenu C: Part 1----------------------------------------------------*/
     public static void StatisticalArray()
     {
-        int size = GetArraySize((short)0);
+        int part = 1; // to display the correct message for GetArraySize Method
+        int size = GetArraySize(part);
         double[] arr = new double[size];
 
         Scanner input = new Scanner(System.in);
@@ -68,15 +81,16 @@ public class Main {
         System.out.println("The harmonic mean of the array is: " + Harmonic_mean);
     }
 
-    public static int GetArraySize(short ith_array)
+    // Asks user for array size and checks if the input is valid
+    public static int GetArraySize(int i)
     {
         int size = 0;
         Scanner input = new Scanner(System.in);
         do {
-            if (ith_array == 0)
+            if (i == 1)
                 System.out.print("\nEnter the size of the array: ");
             else
-                System.out.print("\nEnter the size of array " + ith_array + ": ");
+                System.out.print("\nEnter the dimension of the two arrays: ");
 
             size = input.nextInt();
             input.nextLine(); // to remove "ENTER" key buffer
@@ -86,25 +100,29 @@ public class Main {
         return size;
     }
 
-    static public void DisplayArray(double[] arr)
+    // prints all the array of double elements to visualize
+    public static void DisplayArray(double[] arr)
     {
         for (double element : arr)
             System.out.print(element + " ");
         System.out.println();
     }
-    
-    public static double ArrayMedian(double[] arr, int size) // NOT DONE
+
+    // sorts the array and returns the middle element or median of the array
+    public static double ArrayMedian(double[] arr, int size)
     {
         double median = 0;
-        // sort array
+        // sort array to find middle element
+        Arrays.sort(arr);
 
-        if (size % 2 == 1)
+        if (size % 2 == 1) // when array size is odd
             median = arr[(size+1)/2 - 1];
-        else
+        else // when array size is even
             median = (arr[size/2 - 1] + arr[size/2 + 1] - 1) / 2;
         return median;
     }
 
+    // calculates and returns the arithmetic mean
     public static double ArithmeticMean(double[] arr, int size)
     {
         double avg = 0;
@@ -116,6 +134,7 @@ public class Main {
         return avg;
     }
 
+    // calculates and returns the geometric mean
     public static double GeometricMean(double[] arr, int size)
     {
         double avg = 1;
@@ -128,46 +147,58 @@ public class Main {
         return avg;
     }
 
-    public static double HarmonicMean(double[] arr, int size) // SHOULD BE DONE RECURSIVELY
+    // calls private recursive function to calculate the harmonic mean and returns its value
+    public static double HarmonicMean(double[] arr, int size)
     {
-        double avg = 0;
-        for (double element : arr)
-        {
-            avg += (double)1/element;
+        double sumReciprocals = harmonicHelper(arr, size, 0);
+        return size / sumReciprocals;
+    }
+
+    // private recursive function which calculates the harmonic mean
+    private static double harmonicHelper(double[] arr, int size, int index)
+    {
+        if (index == size) {
+            return 0;
         }
 
-        avg = size/avg;
-        return avg;
+        double current = arr[index];
+        if (current == 0) {
+            System.out.println("This element is zero, so it is skipped to avoid a zero divisor.");
+            return harmonicHelper(arr, size, index + 1);
+        }
+
+        return (1.0 / current) + harmonicHelper(arr, size, index + 1);
     }
 
     /*--------------------------------------------------SubMenu C: Part 2----------------------------------------------------*/
     public static void TwoArraysDistance()
     {
-        int size1 = GetArraySize((short)1);
-        int size2 = GetArraySize((short)2);
-        short[] arr1 = new short[size1];
-        short[] arr2 = new short[size2];
+        int part = 2; // to display the correct message for GetArraySize Method
+        int size = GetArraySize(part);
+        short[] arr1 = new short[size];
+        short[] arr2 = new short[size];
 
-        
-        System.out.println("Proceed with entering " + size1 + " number(s) for the first array (integers 0 to 9): ");
-        GetArrayElements(arr1, size1);
 
-        System.out.println("Proceed with entering " + size2 + " number(s) for the second array (integers 0 to 9): ");
-        GetArrayElements(arr2, size2);
+        System.out.println("Proceed with entering " + size + " number(s) for the first array (integers 0 to 9): ");
+        GetArrayElements(arr1, size);
+
+        System.out.println("Proceed with entering " + size + " number(s) for the second array (integers 0 to 9): ");
+        GetArrayElements(arr2, size);
 
         DisplayArray(arr1);
         DisplayArray(arr2);
 
-        int manhattan_distance = ManhattanDistance(arr1, arr2, size1, size2);
-        int euclidean_distance = EuclideanDistance(arr1, arr2, size1, size2);
-        int cosine_distance = CosineDistance(arr1, arr2, size1, size2);
+        int manhattan_distance = ManhattanDistance(arr1, arr2, size);
+        double euclidean_distance = EuclideanDistance(arr1, arr2, size);
+        double cosine_similarity = CosineSimilarity(arr1, arr2, size);
 
         System.out.println("The manhattan distance of the two arrays is: " + manhattan_distance);
         System.out.println("The euclidean distance of the two arrays is: " + euclidean_distance);
-        System.out.println("The cosine distance of the two arrays is: " + cosine_distance);
-        
+        System.out.println("The cosine similarity of the two arrays is: " + cosine_similarity);
+
     }
 
+    // prints all the array of integers 0 to 9 elements to visualize
     static public void DisplayArray(short[] arr)
     {
         for (short element : arr)
@@ -175,38 +206,66 @@ public class Main {
         System.out.println();
     }
 
+    // Asks user for array elements as input and checks if they are valid integers 0 to 9
     public static void GetArrayElements(short[] arr, int size)
     {
         Scanner input = new Scanner(System.in);
-        
+
         for (int i = 0; i < size; i++)
         {
             arr[i] = input.nextShort();
             if (arr[i] > 9 || arr[i] < 0)
             {
-                System.out.println("Invalid input. Try again!");
+                System.out.println("Invalid input. Try again! (integers 0 to 9)");
                 i--;
             }
             input.nextLine(); // to remove "ENTER" key buffer
         }
     }
 
-    public static int ManhattanDistance(short[] a1, short[] a2, int size1, int size2)
+    // calculates and returns Manhattan distance of the two arrays
+    public static int ManhattanDistance(short[] a1, short[] a2, int size)
     {
         int ans = 0;
-
+        for (int i = 0; i < size; i++)
+        {
+            ans += Math.abs(a1[i] - a2[i]);
+        }
         return ans;
     }
 
-    public static int EuclideanDistance(short[] a1, short[] a2, int size1, int size2)
+    // calculates and returns Euclidean distance of the two arrays
+    public static double EuclideanDistance(short[] a1, short[] a2, int size)
     {
-        int ans = 0;
+        double ans = 0;
+        for (int i = 0; i < size; i++)
+        {
+            ans += Math.pow((a1[i] - a2[i]), 2);
+        }
+        ans = Math.sqrt(ans);
         return ans;
     }
 
-    public static int CosineDistance(short[] a1, short[] a2, int size1, int size2)
+    // calculates and returns Cosine similarity of the two arrays
+    public static double CosineSimilarity(short[] a1, short[] a2, int size)
     {
-        int ans = 0;
+        double ans = 0;
+        int dotProduct = 0;
+        int prod1 = 0;
+        int prod2 = 0;
+        for (int i = 0; i < size; i++)
+        {
+            dotProduct += a1[i]*a2[i];
+            prod1 += (int)Math.pow(a1[i], 2);
+            prod2 += (int)Math.pow(a2[i], 2);
+        }
+        // to eliminate divisor being 0 if both elements are 0
+        if (prod1 == 0 || prod2 == 0)
+        {
+            System.out.println("Divisor was zero!");
+            return 0;
+        }
+        ans = (double)dotProduct/Math.sqrt(prod1*prod2);
         return ans;
     }
 
@@ -234,6 +293,7 @@ public class Main {
                     break;
                 case 'c':
                     System.out.println("\nCLEAR CONSOLE");
+                    clearScreen(); // IntelliJ does not have a way to clear console with code
                     short choice = 0;
                     do {
                         PrintSubmenuC();
@@ -266,6 +326,6 @@ public class Main {
                     System.out.println("\nYou entered an invalid choice. Try again!\n");
             }
         } while (!ValidSubmenu(letter));
-        
+
     }
 }
