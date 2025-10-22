@@ -32,6 +32,22 @@ public class Main {
         return false;
     }
 
+    // Supposedly clears console on cmd
+    public static void clearScreen()
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    // Displays Submenu (Option) B
+    public static void PrintSubmenuB() {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~ SUBMENU B ~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("[1] Prime Numbers");
+        System.out.println("[2] Step-by-step Evaluation of Expression");
+        System.out.println("[3] Return to Main Menu");
+        System.out.print("Please select a number corresponding with your choice: ");
+    }
+    
     public static void main(String[] args)
     {
         WelcomeScreen();
