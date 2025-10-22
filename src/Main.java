@@ -47,7 +47,7 @@ public class Main {
         System.out.println("[3] Return to Main Menu");
         System.out.print("Please select a number corresponding with your choice: ");
     }
-    
+
     public static void main(String[] args)
     {
         WelcomeScreen();
@@ -67,7 +67,27 @@ public class Main {
                     System.out.println("Display Submenu A\n");
                     break;
                 case 'b':
-                    System.out.println("Display Submenu B\n");
+                    clearScreen();
+                    short choiceB = 0;
+                    do {
+                        PrintSubmenuB();
+                        choiceB = input.nextShort();
+                        input.nextLine();
+                        switch (choiceB) {
+                            case 1:
+                                // PrimeNumbers();
+                                break;
+                            case 2:
+                                // StepByStepExpression();
+                                break;
+                            case 3:
+                                letter = 'j'; // return to main menu
+                                System.out.println();
+                                break;
+                            default:
+                                System.out.println("Invalid choice. Try again!\n");
+                        }
+                    } while (choiceB > 3 || choiceB < 1);
                     break;
                 case 'c':
                     System.out.println("Display Submenu C\n");
