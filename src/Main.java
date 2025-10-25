@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -48,6 +49,57 @@ public class Main {
         System.out.print("Please select a number corresponding with your choice: ");
     }
 
+    /*--------------------------------------------------SubMenu B: Part 1----------------------------------------------------*/
+    public static void PrimeNumbers() {
+        Scanner input = new Scanner(System.in);
+        int n;
+
+        do {
+            System.out.print("Enter an integer n (n ≥ 12): ");
+            n = input.nextInt();
+            input.nextLine();
+            if (n < 12)
+                System.out.println("Invalid input! Try again.");
+        } while (n < 12);
+
+        long startTime = System.nanoTime();
+        boolean[] isPrime = new boolean[n + 1];
+        Arrays.fill(isPrime, true);
+        isPrime[0] = false;
+        isPrime[1] = false;
+
+        for (int i = 2; i * i <= n; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= n; j += i) {
+                    isPrime[j] = false;
+                }
+            }
+        }
+        long endTime = System.nanoTime();
+
+        int count = 0;
+        int[] primes = new int[n];
+        for (int i = 2; i <= n; i++) {
+            if (isPrime[i]) {
+                primes[count++] = i;
+            }
+        }
+
+        System.out.println("\nFound " + count + " prime numbers up to " + n + ".");
+        System.out.print("First up to 3 primes: ");
+        for (int i = 0; i < Math.min(3, count); i++)
+            System.out.print(primes[i] + " ");
+        System.out.println();
+
+        System.out.print("Last up to 2 primes: ");
+        for (int i = Math.max(0, count - 2); i < count; i++)
+            System.out.print(primes[i] + " ");
+        System.out.println();
+
+        double ms = (endTime - startTime) / 1_000_000.0;
+        System.out.printf("Execution time: %.3f ms%n", ms);
+    }
+
     public static void main(String[] args)
     {
         WelcomeScreen();
@@ -75,7 +127,7 @@ public class Main {
                         input.nextLine();
                         switch (choiceB) {
                             case 1:
-                                // PrimeNumbers();
+                                PrimeNumbers();
                                 break;
                             case 2:
                                 // StepByStepExpression();
