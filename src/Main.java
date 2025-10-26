@@ -344,12 +344,64 @@ public class Main {
                 case 'a':
                     System.out.println("\nCLEAR CONSOLE");
                     clearScreen();
-                    System.out.println("Display Submenu A\n");
+                    short choiceA = 0;
+                    do {
+                        //PrintSubmenuA();
+                        try {
+                            choiceA = input.nextShort();
+                            input.nextLine(); // to remove "ENTER" key buffer
+                        } catch (InputMismatchException ex) { // to handle overflow/underflow
+                            System.out.println("Input generated Overflow/Underflow");
+                            input.nextLine(); // to remove "ENTER" key buffer
+                            choiceA = -1;
+                            continue;
+                        }
+                        switch (choiceA) {
+                            case 1:
+                                // age and zodiac
+                                break;
+                            case 2:
+                                // reverse words
+                                break;
+                            case 3:
+                                letter = 'j'; // loop back to main menu
+                                System.out.println();
+                                break;
+                            default:
+                                System.out.println("Invalid choice. Try again!\n");
+                        }
+                    } while (choiceA > 3 || choiceA < 1);
                     break;
                 case 'b':
                     System.out.println("\nCLEAR CONSOLE");
                     clearScreen();
-                    System.out.println("Display Submenu B\n");
+                    short choiceB = 0;
+                    do {
+                        //PrintSubmenuB();
+                        try {
+                            choiceB = input.nextShort();
+                            input.nextLine(); // to remove "ENTER" key buffer
+                        } catch (InputMismatchException ex) { // to handle overflow/underflow
+                            System.out.println("Input generated Overflow/Underflow");
+                            input.nextLine(); // to remove "ENTER" key buffer
+                            choiceB = 0;
+                            continue;
+                        }
+                        switch (choiceB) {
+                            case 1:
+                                // prime numbers
+                                break;
+                            case 2:
+                                // step by step evaluation
+                                break;
+                            case 3:
+                                letter = 'j'; // loop back to main menu
+                                System.out.println();
+                                break;
+                            default:
+                                System.out.println("Invalid choice. Try again!\n");
+                        }
+                    } while (choiceB > 3 || choiceB < 1);
                     break;
                 case 'c':
                     System.out.println("\nCLEAR CONSOLE");
@@ -398,4 +450,5 @@ public class Main {
 
     }
 }
+
 
