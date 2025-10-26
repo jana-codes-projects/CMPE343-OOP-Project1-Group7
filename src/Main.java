@@ -353,7 +353,7 @@ public class Main {
                         } catch (InputMismatchException ex) { // to handle overflow/underflow
                             System.out.println("Input generated Overflow/Underflow");
                             input.nextLine(); // to remove "ENTER" key buffer
-                            choiceA = -1;
+                            choiceA = 0;
                             continue;
                         }
                         switch (choiceA) {
@@ -415,7 +415,7 @@ public class Main {
                         } catch (InputMismatchException ex) { // to handle overflow/underflow
                             System.out.println("Input generated Overflow/Underflow");
                             input.nextLine(); // to remove "ENTER" key buffer
-                            choice = -1;
+                            choice = 0;
                             continue;
                         }
                         switch (choice) {
@@ -450,5 +450,6 @@ public class Main {
 
     }
 }
+
 
 
