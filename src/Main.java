@@ -163,9 +163,6 @@ public class Main {
         String reversed = reverseSentence(sentence);
         System.out.println("\nReversed Sentence:");
         System.out.println(reversed);
-
-        System.out.println("\n(Press Enter to return to Submenu A)");
-        input.nextLine();
     }
     //Recursive Function That Reverses a Sentence Word by Word
     public static String reverseSentence(String sentence)
@@ -282,5 +279,6 @@ public class Main {
 
     }
 }
+
 
 
