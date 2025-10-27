@@ -220,83 +220,198 @@ public class Main {
         return prime;
     }
 
-
-    // StepByStepExpression() (simple math evaluator)
     /*--------------------------------------------------SubMenu B: Part 2----------------------------------------------------*/
-    // Handles submenu option 2: Step-by-step evaluation of a simple arithmetic expression.
-    // Accepts expressions with +, -, *, /, and parentheses.
-    public static void StepByStepExpression() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter a simple arithmetic expression (e.g., (3+5)*2 ):");
-        String expr = input.nextLine();
-        expr = expr.replaceAll("\\s+", "");
-
-        // basic input validation
-        if (!expr.matches("[0-9+\\-*/()]+")) {
-            System.out.println("Invalid characters!");
-            return;
+    public static boolean isValidExpression(String expr) {
+        // An empty expression is invalid
+        if (expr.isEmpty()) {
+            return false;
         }
 
-        try {
-            // if the expression contains parentheses, evaluate the inner part first
-            if (expr.contains("(")) {
-                int open = expr.lastIndexOf('(');
-                int close = expr.indexOf(')', open);
-                String inside = expr.substring(open + 1, close);
+        // Check 1: Invalid Characters
+        if (!expr.matches("[0-9+\\-x:()]+")) {
+            return false;
+        }
 
-                // evaluate inside parentheses and replace it with result
-                int result = SimpleEval(inside);
-                System.out.println("= " + expr.substring(0, open) + result + expr.substring(close + 1));
-                expr = expr.substring(0, open) + result + expr.substring(close + 1);
+        // Check 2: Mismatched Parentheses
+        int parenthesesCounter = 0;
+        for (char c : expr.toCharArray()) {
+            if (c == '(') {
+                parenthesesCounter++;
+            } else if (c == ')') {
+                parenthesesCounter--;
             }
-
-            int finalResult = SimpleEval(expr);
-            System.out.println("= " + finalResult);
-        } catch (Exception e) {
-            System.out.println("Invalid expression!");
+            // If we try to close a parenthesis that was never opened
+            if (parenthesesCounter < 0) {
+                return false;
+            }
         }
+        // If the loop finishes and the count isn't zero
+        if (parenthesesCounter != 0) {
+            return false;
+        }
+
+        // Check 3: Consecutive operators
+        for (int i = 0; i < expr.length() - 1; i++) {
+            char current = expr.charAt(i);
+            char next = expr.charAt(i + 1);
+            if ("+-x:".indexOf(current) != -1 && "+-x:".indexOf(next) != -1) {
+                return false;
+            }
+            // Check for empty parentheses
+            if (current == '(' && next == ')') return false;
+        }
+
+        // Check 4: Invalid start/end characters
+        char firstChar = expr.charAt(0);
+        char lastChar = expr.charAt(expr.length() - 1);
+
+        if (firstChar == '+' || firstChar == 'x' || firstChar == ':') {
+            return false;
+        }
+        // Expressions ending in an operator are invalid
+        if ("+-x:".indexOf(lastChar) != -1) {
+            return false;
+        }
+
+        return true; // Passed all checks
     }
 
-    // Evaluates a simple arithmetic expression (no parentheses) from left to right,
-    // respecting operator precedence (* and / before + and -).
-    private static int SimpleEval(String expr) {
-        ArrayList<Integer> nums = new ArrayList<>();
+    public static String evaluateStepByStep(String expr, boolean printSteps) {
+        // Base Case: If the expression is just a single number (positive or negative)
+        if (expr.matches("^-?[0-9]+$")) {
+            return expr; // Stop recursion
+        }
+
+        // Solve Parentheses First
+        if (expr.contains("(")) {
+            // Find the first closing parenthesis
+            int close = expr.indexOf(')');
+            // Find the last opening parenthesis before that closing one
+            int open = expr.substring(0, close).lastIndexOf('(');
+
+            String before = expr.substring(0, open);
+            String inside = expr.substring(open + 1, close);
+            String after = expr.substring(close + 1);
+
+            // RECURSIVE CALL 1: Solve what's inside
+            String insideResult = evaluateStepByStep(inside, false);
+
+            // Rebuild the expression with the result from inside
+            String newExpr = before + insideResult + after;
+
+            // Only print the step if this is the main call
+            if (printSteps) {
+                System.out.println("= " + newExpr); // Print the step
+            }
+
+            // RECURSIVE CALL 2: Solve the newly simplified expression, passing the flag
+            return evaluateStepByStep(newExpr, printSteps);
+        }
+
+        // Solve with Operator Precedence
+        ArrayList<String> nums = new ArrayList<>();
         ArrayList<Character> ops = new ArrayList<>();
 
         String num = "";
-        // parse expression into numbers and operators
+
+        if (expr.startsWith("-")) {
+            num = "-";
+            expr = expr.substring(1);
+        }
+
         for (char c : expr.toCharArray()) {
-            if (Character.isDigit(c)) num += c;
-            else {
-                nums.add(Integer.parseInt(num));
+            if (Character.isDigit(c)) {
+                num += c;
+            } else if (c == '-') {
+                if (num.isEmpty()) {
+                    num = "-";
+                } else {
+                    nums.add(num);
+                    num = "";
+                    ops.add(c);
+                }
+            } else {
+                nums.add(num);
                 num = "";
                 ops.add(c);
             }
         }
-        nums.add(Integer.parseInt(num));
+        nums.add(num);
 
-        // handle * and / first
-        for (int i = 0; i < ops.size();) {
-            char op = ops.get(i);
-            if (op == '*' || op == '/') {
-                int a = nums.get(i);
-                int b = nums.get(i + 1);
-                int res = (op == '*') ? a * b : a / b;
-                nums.set(i, res);
-                nums.remove(i + 1);
-                ops.remove(i);
-            } else i++;
-        }
-
-        // handle + and - next
-        int result = nums.get(0);
+        // Solve Multiplication and Division
         for (int i = 0; i < ops.size(); i++) {
             char op = ops.get(i);
-            int b = nums.get(i + 1);
-            if (op == '+') result += b;
-            else if (op == '-') result -= b;
+            if (op == 'x' || op == ':') {
+                int a = Integer.parseInt(nums.get(i));
+                int b = Integer.parseInt(nums.get(i + 1));
+
+                int res = (op == 'x') ? a * b : a / b;
+
+                String newExpr = "";
+                for(int j=0; j < i; j++) newExpr += nums.get(j) + ops.get(j);
+                newExpr += res;
+                for(int j=i+1; j < ops.size(); j++) newExpr += ops.get(j) + nums.get(j+1);
+
+                if (printSteps) {
+                    System.out.println("= " + newExpr);
+                }
+                return evaluateStepByStep(newExpr, printSteps);
+            }
         }
-        return result;
+
+        // Solve Addition and Subtraction
+        for (int i = 0; i < ops.size(); i++) {
+            char op = ops.get(i);
+            if (op == '+' || op == '-') {
+                int a = Integer.parseInt(nums.get(i));
+                int b = Integer.parseInt(nums.get(i + 1));
+                int res = (op == '+') ? a + b : a - b;
+
+                String newExpr = "";
+                for(int j=0; j < i; j++) newExpr += nums.get(j) + ops.get(j);
+                newExpr += res;
+                for(int j=i+1; j < ops.size(); j++) newExpr += ops.get(j) + nums.get(j+1);
+
+                if (printSteps) {
+                    System.out.println("= " + newExpr);
+                }
+                return evaluateStepByStep(newExpr, printSteps);
+            }
+        }
+
+        return expr;
+    }
+
+    public static void StepByStepExpression() {
+        Scanner input = new Scanner(System.in);
+        String expr;
+        boolean isValid;
+
+        // VALIDATION LOOP
+        do {
+            System.out.println("Enter an arithmetic expression (e.g., (3+5)x2 ):");
+            expr = input.nextLine();
+            expr = expr.replaceAll("\\s+", "");
+
+            isValid = isValidExpression(expr);
+
+            if (!isValid && !expr.isEmpty()) {
+                System.out.println("re-enter a valid expression.");
+            }
+        } while (!isValid);
+
+        // RECURSIVE EVALUATION
+        System.out.println(expr); // Print the original, valid expression
+
+        try {
+            // Start the recursive call, setting printSteps to TRUE
+            evaluateStepByStep(expr, true);
+
+        } catch (ArithmeticException e) {
+            System.out.println("Error during evaluation: Division by zero!");
+        } catch (Exception e) {
+            System.out.println("Error during evaluation: " + e.getMessage());
+        }
     }
 
     public static void main(String[] args)
