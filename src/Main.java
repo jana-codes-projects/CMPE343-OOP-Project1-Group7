@@ -356,7 +356,7 @@ public class Main
     {
         Scanner input = new Scanner(System.in);
         System.out.println("\n=== Reverse the Words ===");
-        System.out.print("Enter your sentence:");
+        System.out.print("Enter your sentence: ");
         String sentence = input.nextLine();
 
         String reversed = reverseSentence(sentence);
@@ -430,7 +430,10 @@ public class Main
             }
             if (n < 12)
                 System.out.println("Invalid input! Try again.");
-        } while (n < 12);
+            else if (n > MAX_ARRAY_SIZE)
+                System.out.println("Input too large! Limit is " + MAX_ARRAY_SIZE);
+
+        } while (n < 12 || n > MAX_ARRAY_SIZE);
 
         // Algorithm 1: Eratosthenes
         long startE = System.nanoTime();
@@ -817,7 +820,7 @@ public class Main
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println("\nProceed with entering " + size + " number(s) (accepts double values): ");
+        System.out.println("\nProceed with entering " + size + " number(s) (accepts double values like 6.5): ");
         for (int i = 0; i < size; i++)
         {
             while (true) {
@@ -1519,3 +1522,4 @@ public class Main
 
     }
 }
+
