@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 public class Main
 {
-    private static final int MAX_ARRAY_SIZE = 10_000_000; // arbitrary safety cap for arrays
+    private static final int MAX_USER_INPUT = 60_000; // arbitrary safety cap for arrays
     private static final double CONVERT_NANO_TO_MILLISECOND = 1_000_000.0;
 
     // Displays a welcome screen of the project
@@ -430,10 +430,10 @@ public class Main
             }
             if (n < 12)
                 System.out.println("Invalid input! Try again.");
-            else if (n > MAX_ARRAY_SIZE)
-                System.out.println("Input too large! Limit is " + MAX_ARRAY_SIZE);
+            else if (n > MAX_USER_INPUT)
+                System.out.println("Input too large! Limit is " + MAX_USER_INPUT);
 
-        } while (n < 12 || n > MAX_ARRAY_SIZE);
+        } while (n < 12 || n > MAX_USER_INPUT);
 
         // Algorithm 1: Eratosthenes
         long startE = System.nanoTime();
@@ -893,9 +893,9 @@ public class Main
 
             if (size < 1)
                 System.out.println("Invalid input! Size must be at least 1.");
-            else if (size > MAX_ARRAY_SIZE)
+            else if (size > MAX_USER_INPUT)
             {
-                System.out.println("Requested size is too large; limit is " + MAX_ARRAY_SIZE + ".");
+                System.out.println("Requested size is too large; limit is " + MAX_USER_INPUT + ".");
                 size = 0;
             }
 
@@ -1522,4 +1522,5 @@ public class Main
 
     }
 }
+
 
