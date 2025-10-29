@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 public class Main
 {
-    private static final int MAX_USER_INPUT = 60_000; // arbitrary safety cap for arrays
+    private static final int MAX_USER_INPUT = 60_000; // for safety array size
     private static final double CONVERT_NANO_TO_MILLISECOND = 1_000_000.0;
 
     // Displays a welcome screen of the project
@@ -1522,5 +1522,6 @@ public class Main
 
     }
 }
+
 
 
