@@ -1074,8 +1074,8 @@ public class Main
         for (int i = 0; i < size; i++)
         {
             dotProduct += a1[i]*a2[i];
-            prod1 += Math.powExact(a1[i], 2);
-            prod2 += Math.powExact(a2[i], 2);
+            prod1 += Math.pow(a1[i], 2);
+            prod2 += Math.pow(a2[i], 2);
         }
         // to eliminate divisor being 0 if both elements are 0
         if (prod1 == 0 || prod2 == 0)
@@ -1522,6 +1522,7 @@ public class Main
 
     }
 }
+
 
 
 
