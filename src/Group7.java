@@ -1614,8 +1614,8 @@ public class Group7
      * <p>
      * A winning move occurs when the player has four consecutive pieces aligned
      * horizontally, vertically, or diagonally (either down-right or up-right).
-     * </p>
      * The function scans all possible directions on the board to detect such a sequence.
+     * </p>
      *
      * @param board  the 2D array representing the game board, where 0 = empty, 1 = player 1, and 2 = player 2
      * @param player the player number (1 or 2) to check for a winning condition
@@ -1899,15 +1899,11 @@ public class Group7
      *     <li>High School Menu (Submenu C): Statistical Array, Two Arrays Distance</li>
      *     <li>Connect Four Menu (Submenu D): Play Connect Four game</li>
      * </ul>
-     * </p>
      * The method loops continuously until the user chooses to exit.
-     * <p>
      * User input is validated to handle invalid choices, overflow/underflow, and
      * attempts to enter text when numbers are expected.
-     * </p>
      * Submenu options typically return to their menu after execution unless the
      * user chooses to go back to the main menu.
-     * <p>
      * The method uses {@link #clearScreen()} to refresh the console for better UX,
      * and prompts the user to press Enter to continue between submenu executions.
      * </p>
@@ -2080,6 +2076,7 @@ public class Group7
     }
     
 }
+
 
 
 
