@@ -1094,131 +1094,145 @@ public class Main
         PVP, PVC_RANDOM
     }
 
-    static class Game // class issue
+    private static int[][] createBoard(int rows, int cols)
     {
-        final int cols;
-        final int rows;
-        final int[][] board; // 0 empty, 1 P1, 2 P2
-        final Random rng = new Random();
-
-        Game(int cols, int rows)
-        {
-            this.cols = cols;
-            this.rows = rows;
-            this.board = new int[rows][cols];
-        }
-
-        boolean isColumnFull(int c)
-        {
-            return board[0][c] != 0;
-        }
-
-        boolean drop(int c, int player)
-        {
-            if (c < 0 || c >= cols || isColumnFull(c)) return false;
-            for (int r = rows - 1; r >= 0; r--) {
-                if (board[r][c] == 0) {
-                    board[r][c] = player;
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        boolean hasMoves()
-        {
-            for (int c = 0; c < cols; c++) if (!isColumnFull(c)) return true;
-            return false;
-        }
-
-        void print()
-        {
-            Main.clearScreen();
-            System.out.println();
-            System.out.println("   CONNECT FOUR  (" + cols + "x" + rows + ")");
-            System.out.println();
-            for (int r = 0; r < rows; r++) {
-                System.out.print("  |");
-                for (int c = 0; c < cols; c++) {
-                    char ch = '.';
-                    if (board[r][c] == 1) ch = 'X';
-                    if (board[r][c] == 2) ch = 'O';
-                    System.out.print(" " + ch + " ");
-                }
-                System.out.println("|");
-            }
-            System.out.print("   ");
-            for (int c = 0; c < cols; c++) System.out.print("---");
-            System.out.println();
-            System.out.print("    ");
-            for (int c = 0; c < cols; c++) System.out.printf("%d  ", (c + 1));
-            System.out.println("\n");
-        }
-
-        boolean isWinningMove(int player)
-        {
-            // Horizontal
-            for (int r = 0; r < rows; r++)
-            {
-                for (int c = 0; c <= cols - 4; c++)
-                {
-                    if (board[r][c] == player && board[r][c+1] == player &&
-                            board[r][c+2] == player && board[r][c+3] == player)
-                        return true;
-                }
-            }
-            // Vertical
-            for (int c = 0; c < cols; c++)
-            {
-                for (int r = 0; r <= rows - 4; r++)
-                {
-                    if (board[r][c] == player && board[r+1][c] == player &&
-                            board[r+2][c] == player && board[r+3][c] == player)
-                        return true;
-                }
-            }
-            // Diagonal down-right
-            for (int r = 0; r <= rows - 4; r++)
-            {
-                for (int c = 0; c <= cols - 4; c++)
-                {
-                    if (board[r][c] == player && board[r+1][c+1] == player &&
-                            board[r+2][c+2] == player && board[r+3][c+3] == player)
-                        return true;
-                }
-            }
-            // Diagonal up-right
-            for (int r = 3; r < rows; r++)
-            {
-                for (int c = 0; c <= cols - 4; c++)
-                {
-                    if (board[r][c] == player && board[r-1][c+1] == player &&
-                            board[r-2][c+2] == player && board[r-3][c+3] == player)
-                        return true;
-                }
-            }
-            return false;
-        }
-
-        List<Integer> legalMoves()
-        {
-            List<Integer> moves = new ArrayList<>();
-            for (int c = 0; c < cols; c++)
-                if (!isColumnFull(c))
-                    moves.add(c);
-            return moves;
-        }
-
-        // --- AI: Random ---
-        int aiMoveRandom()
-        {
-            List<Integer> moves = legalMoves();
-            return moves.get(rng.nextInt(moves.size()));
-        }
+        return new int[rows][cols]; // 0 empty, 1 P1, 2 P2
     }
 
-    // Submenu D runner
-    public static void SubmenuD_ConnectFour()
+    private static boolean isColumnFull(int[][] board, int c)
+    {
+        return board[0][c] != 0;
+    }
+
+    private static boolean drop(int[][] board, int c, int player)
+    {
+        int rows = board.length;
+        int cols = board[0].length;
+        if (c < 0 || c >= cols || isColumnFull(board, c))
+            return false;
+        for (int r = rows - 1; r >= 0; r--)
+        {
+            if (board[r][c] == 0)
+            {
+                board[r][c] = player;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean hasMoves(int[][] board)
+    {
+        int cols = board[0].length;
+        for (int c = 0; c < cols; c++)
+            if (!isColumnFull(board, c))
+                return true;
+        return false;
+    }
+
+    private static void printBoard(int[][] board)
+    {
+        Main.clearScreen();
+        int rows = board.length;
+        int cols = board[0].length;
+
+        System.out.println();
+        System.out.println("   CONNECT FOUR  (" + cols + "x" + rows + ")");
+        System.out.println();
+        for (int r = 0; r < rows; r++)
+        {
+            System.out.print("  |");
+            for (int c = 0; c < cols; c++)
+            {
+                char ch = '.';
+                if (board[r][c] == 1)
+                    ch = 'X';
+                if (board[r][c] == 2)
+                    ch = 'O';
+                System.out.print(" " + ch + " ");
+            }
+            System.out.println("|");
+        }
+        System.out.print("   ");
+
+        for (int c = 0; c < cols; c++)
+            System.out.print("---");
+        System.out.println();
+        System.out.print("    ");
+
+        for (int c = 0; c < cols; c++)
+            System.out.printf("%d  ", (c + 1));
+        System.out.println("\n");
+    }
+
+    private static boolean isWinningMove(int[][] board, int player)
+    {
+        int rows = board.length;
+        int cols = board[0].length;
+
+        // Horizontal
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c <= cols - 4; c++)
+            {
+                if (board[r][c] == player && board[r][c+1] == player &&
+                        board[r][c+2] == player && board[r][c+3] == player)
+                    return true;
+            }
+        }
+        // Vertical
+        for (int c = 0; c < cols; c++)
+        {
+            for (int r = 0; r <= rows - 4; r++)
+            {
+                if (board[r][c] == player && board[r+1][c] == player &&
+                        board[r+2][c] == player && board[r+3][c] == player)
+                    return true;
+            }
+        }
+        // Diagonal down-right
+        for (int r = 0; r <= rows - 4; r++)
+        {
+            for (int c = 0; c <= cols - 4; c++)
+            {
+                if (board[r][c] == player && board[r+1][c+1] == player &&
+                        board[r+2][c+2] == player && board[r+3][c+3] == player)
+                    return true;
+            }
+        }
+        // Diagonal up-right
+        for (int r = 3; r < rows; r++)
+        {
+            for (int c = 0; c <= cols - 4; c++)
+            {
+                if (board[r][c] == player && board[r-1][c+1] == player &&
+                        board[r-2][c+2] == player && board[r-3][c+3] == player)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    private static List<Integer> legalMoves(int[][] board)
+    {
+        int cols = board[0].length;
+        List<Integer> moves = new ArrayList<>();
+        for (int c = 0; c < cols; c++)
+            if (!isColumnFull(board, c))
+                moves.add(c);
+        return moves;
+    }
+
+    // --- AI: Random ---
+    private static int aiMoveRandom(int[][] board)
+    {
+        List<Integer> moves = legalMoves(board);
+        Random rng = new Random();
+        return moves.get(rng.nextInt(moves.size()));
+    }
+
+    // --------- Running Function ---------
+    static void SubmenuD_ConnectFour()
     {
         Scanner sc = new Scanner(System.in);
         final String BRIGHT_BLUE = "\u001B[94m";
@@ -1226,7 +1240,7 @@ public class Main
         int[] cOpts = {5, 6, 7};
         int[] rOpts = {4, 5, 6};
 
-        System.out.println(BRIGHT_BLUE + "SUBMENU D — Connect Four");
+        System.out.println(BRIGHT_BLUE + "~~~~~~~~~~~~~~~~~~~~~~~~~~ Connect Four Menu ~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Choose Board Size:");
         System.out.println("  1) 5 x 4");
         System.out.println("  2) 6 x 5");
@@ -1234,7 +1248,6 @@ public class Main
         int sizeChoice = askInt(sc, "Your choice (1-3): ", 1, 3);
         int cols = cOpts[sizeChoice - 1];
         int rows = rOpts[sizeChoice - 1];
-
         System.out.println("\nChoose Game Mode:");
         System.out.println("  1) 2 Players (PvP)");
         System.out.println("  2) Single Player — Computer (Random)");
@@ -1242,14 +1255,14 @@ public class Main
 
         Mode mode = (modeChoice == 1) ? Mode.PVP : Mode.PVC_RANDOM;
 
-        Game g = new Game(cols, rows);
+        int[][] board = createBoard(rows, cols);
         int current = 1; // 1 = X (Player 1), 2 = O (Player 2/Computer)
-        boolean humanIsP1 = true; // in PvC, human plays X by default
+        boolean humanIsP1 = true;
 
         while (true)
         {
-            g.print();
-            if (!g.hasMoves())
+            printBoard(board);
+            if (!hasMoves(board))
             {
                 System.out.println("Board is full. It's a draw!");
                 break;
@@ -1266,12 +1279,11 @@ public class Main
             if (mode == Mode.PVP || isHumansTurn)
             {
                 // Human turn
-                System.out.printf("Player %d (%s), choose a column (1-%d) or 'q' to forfeit: ",
-                        current, (current == 1 ? "X" : "O"), cols);
+                System.out.printf("Player %d (%s), choose a column (1-%d) or 'q' to forfeit: ", current, (current == 1 ? "X" : "O"), cols);
                 String in = sc.nextLine().trim();
                 if (in.equalsIgnoreCase("q"))
                 {
-                    g.print();
+                    printBoard(board);
                     System.out.printf("Player %d forfeited. The other player wins!\n", current);
                     break;
                 }
@@ -1279,14 +1291,14 @@ public class Main
                 try
                 {
                     int col = Integer.parseInt(in) - 1;
-                    if (col < 0 || col >= cols || g.isColumnFull(col)) {
+                    if (col < 0 || col >= cols || isColumnFull(board, col))
+                    {
                         System.out.println("Invalid choice or the column is full. Try again.");
                         pause(sc);
                         continue;
                     }
                     moveCol = col;
-                }
-                catch (NumberFormatException e)
+                } catch (NumberFormatException e)
                 {
                     System.out.println("Invalid input. Try again.");
                     pause(sc);
@@ -1297,25 +1309,21 @@ public class Main
             {
                 // Computer turn
                 System.out.println("Computer is thinking...");
-                moveCol = g.aiMoveRandom();
+                moveCol = aiMoveRandom(board);
                 sleep(300); // small delay for UX
             }
 
             // Apply move
-            g.drop(moveCol, current);
+            drop(board, moveCol, current);
 
             // Check win
-            if (g.isWinningMove(current))
+            if (isWinningMove(board, current))
             {
-                g.print();
+                printBoard(board);
                 if (mode == Mode.PVP || isHumansTurn)
-                {
                     System.out.printf("Congratulations! Player %d (%s) wins!\n", current, (current == 1 ? "X" : "O"));
-                }
                 else
-                {
                     System.out.printf("Computer (%s) wins!\n", (current == 1 ? "X" : "O"));
-                }
                 break;
             }
 
@@ -1328,36 +1336,38 @@ public class Main
         sc.nextLine();
     }
 
-    private static int askInt(Scanner sc, String prompt, int min, int max)
+
+    static int askInt(Scanner sc, String prompt, int min, int max)
     {
         while (true)
         {
             System.out.print(prompt);
             String s = sc.nextLine().trim();
+
             try
             {
                 int v = Integer.parseInt(s);
                 if (v >= min && v <= max) return v;
             } catch (NumberFormatException ignored) {}
+
             System.out.println("Invalid input. Please try again.");
         }
     }
 
-    private static void pause(Scanner sc)
+    static void pause(Scanner sc)
     {
         System.out.print("Press Enter to continue...");
         sc.nextLine();
     }
 
-    private static void sleep(long ms)
+    static void sleep(long ms)
     {
         try
         {
             Thread.sleep(ms);
-        }
-        catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {}
     }
-
+    
     /*--------------------------------------------------MAIN FUNCTION----------------------------------------------------*/
     public static void main(String[] args)
     {
@@ -1522,6 +1532,7 @@ public class Main
 
     }
 }
+
 
 
 
