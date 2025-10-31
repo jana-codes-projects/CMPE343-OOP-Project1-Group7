@@ -1455,6 +1455,7 @@ public class Group7
      *   <li>{@link #PVP} — Player vs. Player (two human players)</li>
      *   <li>{@link #PVC_RANDOM} — Player vs. Computer with random move selection</li>
      * </ul>
+     * </p>
      */
     enum Mode
     {
@@ -1470,6 +1471,7 @@ public class Group7
      *   <li>1 = Player 1's piece</li>
      *   <li>2 = Player 2's piece</li>
      * </ul>
+     * </p>
      *
      * @param rows the number of rows in the board
      * @param cols the number of columns in the board
@@ -1484,6 +1486,7 @@ public class Group7
      * Checks whether the specified column in the board is already full.
      * <p>
      * A column is considered full if its topmost cell (row 0) is not empty (i.e., not equal to 0).
+     * </p>
      *
      * @param board the 2D game board array
      * @param c the column index to check
@@ -1501,6 +1504,7 @@ public class Group7
      * The function checks if the column index is valid and not full.
      * Starting from the bottom row, it finds the first empty cell (value 0)
      * and places the player's piece (1 or 2) there.
+     * </p>
      *
      * @param board  the 2D array representing the game board, where 0 = empty, 1 = player 1, and 2 = player 2
      * @param c      the column index where the player wants to drop their piece
@@ -1531,6 +1535,7 @@ public class Group7
      * if at least one column is not full (i.e., has an empty space).
      * Otherwise, it returns {@code false}, indicating that the game board
      * is completely filled and no further moves can be made.
+     * </p>
      *
      * @param board the 2D array representing the game board
      * @return {@code true} if there is at least one available move; {@code false} if all columns are full
@@ -1556,6 +1561,7 @@ public class Group7
      * </ul>
      * At the bottom of the printed board, column numbers are shown to
      * guide the player for input selection.
+     * </p>
      *
      * @param board the 2D array representing the game board
      */
@@ -1599,7 +1605,7 @@ public class Group7
      * <p>
      * A winning move occurs when the player has four consecutive pieces aligned
      * horizontally, vertically, or diagonally (either down-right or up-right).
-     * <p>
+     * </p>
      * The function scans all possible directions on the board to detect such a sequence.
      *
      * @param board  the 2D array representing the game board, where 0 = empty, 1 = player 1, and 2 = player 2
@@ -1660,6 +1666,7 @@ public class Group7
      * The function iterates through all columns and adds the indices
      * of those that are not full, meaning a player can still drop a piece there.
      * This is typically used by AI decision logic or to validate player input.
+     * </p>
      *
      * @param board the 2D array representing the game board
      * @return a list of column indices where a piece can legally be dropped
@@ -1679,6 +1686,7 @@ public class Group7
      * <p>
      * The method gathers all legal moves via {@link #legalMoves(int[][])}
      * and returns one uniformly at random.
+     * </p>
      *
      * @param board the 2D array representing the game board
      * @return the chosen column index (0-based) among the legal moves
@@ -1703,6 +1711,7 @@ public class Group7
      * </ul>
      * The board uses <code>0</code> for empty, <code>1</code> for Player&nbsp;1 (X),
      * and <code>2</code> for Player&nbsp;2 (O).
+     * </p>
      *
      * @implNote Uses helper methods such as {@link #askInt(Scanner, String, int, int)},
      * {@link #printBoard(int[][])}, {@link #hasMoves(int[][])}, {@link #isColumnFull(int[][], int)},
@@ -1856,6 +1865,7 @@ public class Group7
      * This method wraps {@link Thread#sleep(long)} and ignores any {@link InterruptedException}.
      * It is primarily used in the Connect Four game to add a small delay when the computer
      * makes a move, improving the user experience by making the game feel more natural.
+     * </p>
      *
      * @param ms the duration to sleep in milliseconds
      */
@@ -1880,15 +1890,18 @@ public class Group7
      *     <li>High School Menu (Submenu C): Statistical Array, Two Arrays Distance</li>
      *     <li>Connect Four Menu (Submenu D): Play Connect Four game</li>
      * </ul>
+     * </p>
      * The method loops continuously until the user chooses to exit.
      * <p>
      * User input is validated to handle invalid choices, overflow/underflow, and
      * attempts to enter text when numbers are expected.
+     * </p>
      * Submenu options typically return to their menu after execution unless the
      * user chooses to go back to the main menu.
      * <p>
      * The method uses {@link #clearScreen()} to refresh the console for better UX,
      * and prompts the user to press Enter to continue between submenu executions.
+     * </p>
      *
      * @param args command-line arguments (ignored in this program)
      */
@@ -2058,4 +2071,5 @@ public class Group7
     }
     
 }
+
 
