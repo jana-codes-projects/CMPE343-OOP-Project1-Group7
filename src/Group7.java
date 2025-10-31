@@ -8,12 +8,18 @@ import java.util.Date;
 import java.util.Calendar;
 
 
-public class Main
+public class Group7
 {
     private static final int MAX_USER_INPUT = 60_000; // for safety array size
     private static final double CONVERT_NANO_TO_MILLISECOND = 1_000_000.0;
 
-    // Displays a welcome screen of the project
+    /**
+     * Displays a welcome screen of the project.
+     * <p>
+     * Prints a colorful ASCII art welcome banner with group information and
+     * project title using ANSI color codes.
+     * </p>
+     */
     public static void WelcomeScreen()
     {
         // ANSI color codes
@@ -53,7 +59,13 @@ public class Main
         System.out.println(BRIGHT_YELLOW + "\n>>> Let's begin the project! <<<\n" + RESET);
     }
 
-    // Displays Main Menu
+    /**
+     * Displays the main menu options on the console.
+     * <p>
+     * Shows submenu choices for different school levels and an option to terminate
+     * the program. Prompts the user to select an option by entering a letter.
+     * </p>
+     */
     public static void PrintMainMenu()
     {
         final String BRIGHT_WHITE = "\u001B[97m";
@@ -67,7 +79,13 @@ public class Main
         System.out.print("Please select a letter corresponding with your submenu choice: ");
     }
 
-    // Checks if the user input is valid for a submenu
+    /**
+     * Checks if the given character represents a valid submenu choice.
+     *
+     * @param c the user input character to validate
+     * @return {@code true} if the character is one of 'a', 'b', 'c', 'd', or 'e';
+     *         {@code false} otherwise
+     */
     public static boolean ValidSubmenu(char c)
     {
         if (c == 'a' || c == 'b' || c == 'c' || c == 'd' || c == 'e')
@@ -75,7 +93,13 @@ public class Main
         return false;
     }
 
-    // Supposedly clears console on cmd
+    /**
+     * Attempts to clear the console screen.
+     * <p>
+     * This method prints ANSI escape codes and several blank lines to simulate
+     * clearing the terminal window for better readability between sections.
+     * </p>
+     */
     public static void clearScreen()
     {
         System.out.print("\033[H\033[2J");
@@ -110,9 +134,48 @@ public class Main
         System.out.println();
     }
 
+    /**
+     * Displays a "THANK YOU" ASCII art message at the end of the program.
+     */
+    public static void ThankYouScreen() 
+    {
+        // ANSI color codes
+        final String RESET = "\u001B[0m";
+        final String YELLOW = "\u001B[93m";
+        final String RED = "\u001B[91m";
+        final String BRIGHT_WHITE = "\u001B[97m";
+
+
+        System.out.println(YELLOW +
+                           "╔═══════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                                                                   ║");
+        System.out.println("║  " + RED + "TTTTTTTT  H   H  AAAAA  N   N  K   K       Y   Y  OOOO  U   U" + YELLOW + "    ║");
+        System.out.println("║  " + RED + "   TT     H   H  A   A  NN  N  K  K         Y Y  O    O U   U" + YELLOW + "    ║");
+        System.out.println("║  " + RED + "   TT     HHHHH  AAAAA  N N N  KKK           Y   O    O U   U" + YELLOW + "    ║");
+        System.out.println("║  " + RED + "   TT     H   H  A   A  N  NN  K  K          Y   O    O U   U" + YELLOW + "    ║");
+        System.out.println("║  " + RED + "   TT     H   H  A   A  N   N  K   K         Y    OOOO   UUU" + YELLOW + "     ║");
+        System.out.println("║                                                                   ║");
+        System.out.println("╚═══════════════════════════════════════════════════════════════════╝" + RESET);
+
+        System.out.println(BRIGHT_WHITE + "\n★ THANK YOU FOR USING OUR PROGRAM ★" + RESET);
+        System.out.println(BRIGHT_WHITE + "\n      We hope you enjoyed it!" + RESET);
+        System.out.println(RED + "\n>>> GROUP 7 - OOP PROJECT 2025 <<<\n" + RESET);
+    }
+    
     /*--------------------------------------------------SubMenu Displays----------------------------------------------------*/
 
-    // Displays Submenu (Option) A
+    /**
+     * Displays Submenu (Option) A for the Primary School section.
+     * <p>
+     * Prints submenu options for Primary School, including:
+     * <ul>
+     *   <li>Age and Zodiac Sign Detection</li>
+     *   <li>Reverse the Words</li>
+     *   <li>Return to Main Menu</li>
+     * </ul>
+     * Prompts the user to select one of the options.
+     * </p>
+     */
     public static void PrintSubmenuA()
     {
         final String BRIGHT_PURPLE = "\u001B[95m";
@@ -124,7 +187,18 @@ public class Main
         System.out.print("Please select an option: ");
     }
 
-    // Displays Submenu (Option) B
+    /**
+     * Displays Submenu (Option) B for the Secondary School section.
+     * <p>
+     * Prints submenu options for Secondary School, including:
+     * <ul>
+     *   <li>Prime Numbers</li>
+     *   <li>Step-by-step Evaluation of Expression</li>
+     *   <li>Return to Main Menu</li>
+     * </ul>
+     * Prompts the user to select a number corresponding to their choice.
+     * </p>
+     */
     public static void PrintSubmenuB()
     {
         final String CYAN = "\u001B[36m";
@@ -136,7 +210,18 @@ public class Main
         System.out.print("Please select a number corresponding with your choice: ");
     }
 
-    // Displays Submenu (Option) C
+    /**
+     * Displays Submenu (Option) C for the High School section.
+     * <p>
+     * Prints submenu options for High School, including:
+     * <ul>
+     *   <li>Statistical Information about an Array</li>
+     *   <li>Distance between Two Arrays</li>
+     *   <li>Return to Main Menu</li>
+     * </ul>
+     * Prompts the user to select a number corresponding to their choice.
+     * </p>
+     */
     public static void PrintSubmenuC()
     {
         final String MAGENTA = "\u001B[35m";
@@ -150,6 +235,14 @@ public class Main
 
     /*--------------------------------------------------SubMenu A: Part 1----------------------------------------------------*/
 
+    /**
+     * Calculates and displays the user's age and zodiac sign.
+     * <p>
+     * Prompts the user to enter their birth date (day, month, year), validates the date,
+     * and then computes their current age based on the system date. It also determines
+     * the user's zodiac sign based on their birth date.
+     * </p>
+     */
     public static void AgeAndZodiac()
     {
         int currentDay, currentMonth, currentYear;
@@ -182,7 +275,11 @@ public class Main
         System.out.println("Your Zodiac Sign: " + zodiac);
     }
 
-    // asks user for birth day and checks if it is valid
+    /**
+     * Prompts the user to enter the day of birth and validates the input.
+     *
+     * @return the valid day of birth (1–31)
+     */
     public static short GetDay()
     {
         short day = 0;
@@ -215,7 +312,11 @@ public class Main
         return day;
     }
 
-    // asks user for birth month and checks if it is valid
+    /**
+     * Prompts the user to enter the month of birth and validates the input.
+     *
+     * @return the valid month of birth (1–12)
+     */
     public static short GetMonth()
     {
         short month = 0;
@@ -248,7 +349,12 @@ public class Main
         return month;
     }
 
-    // asks user for birth year and checks if it is valid
+    /**
+     * Prompts the user to enter the year of birth and validates the input.
+     *
+     * @param CurrentYear the current year, used to ensure the birth year is valid
+     * @return the valid birth year (must be less than or equal to the current year)
+     */
     public static short GetYear(int CurrentYear)
     {
         short year = 0;
@@ -281,7 +387,18 @@ public class Main
         return year;
     }
 
-    // checks if the date is valid based on day corresponding to month and if it is a leap year
+    /**
+     * Validates whether a given date is legitimate.
+     * <p>
+     * Considers the number of days in each month and adjusts for leap years.
+     * </p>
+     *
+     * @param day the day of the month
+     * @param month the month (1–12)
+     * @param year the year
+     * @param daysInMonth array representing the number of days in each month
+     * @return {@code true} if the date is valid; {@code false} otherwise
+     */
     private static boolean isValidDate(short day, short month, short year, short[] daysInMonth)
     {
         // Adjust for leap year
@@ -295,7 +412,18 @@ public class Main
         return true;
     }
 
-    //Function Calculating Age Based on Date of Birth
+    /**
+     * Calculates the user's age based on birth date and current date.
+     *
+     * @param birthDay day of birth
+     * @param birthMonth month of birth
+     * @param birthYear year of birth
+     * @param currentDay current day
+     * @param currentMonth current month
+     * @param currentYear current year
+     * @param daysInMonth array containing number of days per month
+     * @return an integer array containing {years, months, days} of age
+     */
     private static int[] calculateAge(short birthDay, short birthMonth, short birthYear, int currentDay, int currentMonth, int currentYear, short[] daysInMonth)
     {
         if (birthDay > currentDay)
@@ -317,7 +445,13 @@ public class Main
         return new int[] { calculatedYear, calculatedMonth, calculatedDay };
     }
 
-    //Function Calculating Zodiac Sign Based on Date of Birth
+    /**
+     * Determines the zodiac sign based on the user's birth day and month.
+     *
+     * @param day the day of birth
+     * @param month the month of birth
+     * @return the zodiac sign as a string (e.g., "Aries", "Taurus")
+     */
     private static String calculateZodiac(int day, int month)
     {
         String zodiac = "";
@@ -352,6 +486,14 @@ public class Main
 
     /*--------------------------------------------------SubMenu A: Part 2----------------------------------------------------*/
 
+    /**
+     * Prompts the user to enter a sentence and displays the sentence
+     * with each word reversed.
+     * <p>
+     * This method takes user input, calls the {@code reverseSentence()} method
+     * to reverse each word in the sentence recursively, and prints the result.
+     * </p>
+     */
     public static void ReverseWords()
     {
         Scanner input = new Scanner(System.in);
@@ -364,7 +506,16 @@ public class Main
         System.out.println(reversed);
     }
 
-    //Recursive Function That Reverses a Sentence Word by Word
+    /**
+     * Recursively reverses a sentence word by word.
+     * <p>
+     * Splits the sentence at the first space, reverses the first word using
+     * {@code reverseWord()}, and then recursively processes the rest of the sentence.
+     * </p>
+     *
+     * @param sentence the sentence to reverse
+     * @return a new string where each word in the sentence is reversed
+     */
     private static String reverseSentence(String sentence)
     {
         if (sentence.isEmpty())
@@ -379,7 +530,17 @@ public class Main
         return reverseWord(firstWord) + " " + reverseSentence(rest);
     }
 
-    //Single Word Reversal Function
+    /**
+     * Reverses a single word by calling a recursive helper function.
+     * <p>
+     * If the word length is less than 2, it returns the word unchanged.
+     * Otherwise, it calls {@code reverseWordRecursive()} to reverse
+     * the characters in the word.
+     * </p>
+     *
+     * @param word the word to reverse
+     * @return the reversed word
+     */
     private static String reverseWord(String word)
     {
         if (word.length() < 2)
@@ -387,7 +548,18 @@ public class Main
         return reverseWordRecursive(word, 0, word.length() - 1);
     }
 
-    //Function to Recursively Reverse the Letters in a Word
+    /**
+     * Recursively reverses the characters in a word.
+     * <p>
+     * Swaps letters from both ends of the word until the middle is reached.
+     * Non-letter characters are skipped and remain in place.
+     * </p>
+     *
+     * @param word  the word to reverse
+     * @param left  the current left index
+     * @param right the current right index
+     * @return the word with its letters reversed
+     */
     private static String reverseWordRecursive(String word, int left, int right)
     {
         char[] chars = word.toCharArray();
@@ -407,8 +579,22 @@ public class Main
             return reverseWordRecursive(word, left, right - 1);
     }
 
-
     /*--------------------------------------------------SubMenu B: Part 1----------------------------------------------------*/
+
+    /**
+     * Prompts the user for an integer n (n ≥ 12) and compares three different
+     * prime number generation algorithms: Eratosthenes, Sundaram, and Atkin.
+     * <p>
+     * For each algorithm, the method:
+     * <ul>
+     *   <li>Generates all prime numbers up to n</li>
+     *   <li>Displays the total count of primes found</li>
+     *   <li>Prints the first 3 and last 2 prime numbers</li>
+     *   <li>Measures and compares execution time</li>
+     * </ul>
+     * Handles invalid, small, and excessively large inputs with appropriate messages.
+     * </p>
+     */
     public static void PrimeNumbers()
     {
         Scanner input = new Scanner(System.in);
@@ -430,10 +616,10 @@ public class Main
             }
             if (n < 12)
                 System.out.println("Invalid input! Try again.");
-            else if (n > MAX_USER_INPUT)
-                System.out.println("Input too large! Limit is " + MAX_USER_INPUT);
+            else if (n > MAX_ARRAY_SIZE)
+                System.out.println("Input too large! Limit is " + MAX_ARRAY_SIZE);
 
-        } while (n < 12 || n > MAX_USER_INPUT);
+        } while (n < 12 || n > MAX_ARRAY_SIZE);
 
         // Algorithm 1: Eratosthenes
         long startE = System.nanoTime();
@@ -519,7 +705,15 @@ public class Main
         System.out.printf("Sieve of Atkin: %.3f ms%n", (endA - startA) / CONVERT_NANO_TO_MILLISECOND);
     }
 
-    // 1: Eratosthenes algorithm
+    /**
+     * Implements the Sieve of Eratosthenes algorithm for finding all prime numbers up to n.
+     * <p>
+     * Marks multiples of each prime as non-prime, starting from 2.
+     * </p>
+     *
+     * @param n the upper limit for prime number generation
+     * @return a boolean array where {@code true} indicates a prime number
+     */
     private static boolean[] Eratosthenes(int n)
     {
         boolean[] prime = new boolean[n + 1];
@@ -536,7 +730,16 @@ public class Main
         return prime;
     }
 
-    // 2: Sundaram algorithm
+    /**
+     * Implements the Sieve of Sundaram algorithm for generating prime numbers up to n.
+     * <p>
+     * Eliminates numbers of the form i + j + 2ij and maps remaining values
+     * to primes using the formula 2i + 1.
+     * </p>
+     *
+     * @param n the upper limit for prime number generation
+     * @return a boolean array where {@code true} indicates a prime number
+     */
     private static boolean[] Sundaram(int n)
     {
         int k = (n - 1) / 2;
@@ -557,7 +760,15 @@ public class Main
         return prime;
     }
 
-    // 3: Atkin algorithm
+    /**
+     * Implements the Sieve of Atkin algorithm for generating prime numbers up to n.
+     * <p>
+     * Uses quadratic forms to identify prime candidates and eliminates composites.
+     * </p>
+     *
+     * @param n the upper limit for prime number generation
+     * @return a boolean array where {@code true} indicates a prime number
+     */
     private static boolean[] Atkin(int n)
     {
         boolean[] prime = new boolean[n + 1];
@@ -593,9 +804,67 @@ public class Main
         return prime;
     }
 
-
     /*--------------------------------------------------SubMenu B: Part 2----------------------------------------------------*/
 
+    /**
+     * Prompts the user to enter an arithmetic expression, validates it, and then
+     * evaluates it step-by-step using recursion.
+     * <p>
+     * If the expression is invalid, the user is asked to re-enter it. The evaluation
+     * process prints each simplification step to the console.
+     */
+    public static void StepByStepExpression()
+    {
+        Scanner input = new Scanner(System.in);
+        String expr;
+
+        // VALIDATION LOOP
+        while (true)
+        {
+            System.out.print("\nEnter an arithmetic expression (e.g., (3+5)x2 ): ");
+            expr = input.nextLine();
+            expr = expr.replaceAll("\\s+", "");
+
+            if (!isValidExpression(expr) && !expr.isEmpty())
+                System.out.println("Expression was incorrect. Re-enter a valid expression.");
+            else
+                break;
+        }
+
+        // RECURSIVE EVALUATION
+        System.out.println(expr); // Print the original, valid expression
+
+        try
+        {
+            // Start the recursive call, setting printSteps to TRUE
+            evaluateStepByStep(expr, true);
+        }
+        catch (ArithmeticException e)
+        {
+            System.out.println("Error during evaluation: Division by zero!");
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error during evaluation: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Validates whether a given arithmetic expression is correctly formatted.
+     * <p>
+     * The method checks for:
+     * <ul>
+     *   <li>Empty expressions</li>
+     *   <li>Invalid characters (only digits, '+', '-', 'x', ':', and parentheses are allowed)</li>
+     *   <li>Mismatched or unbalanced parentheses</li>
+     *   <li>Consecutive operators (e.g., "++", "x:")</li>
+     *   <li>Empty parentheses (e.g., "()")</li>
+     *   <li>Invalid starting or ending characters (e.g., "+3", "3x")</li>
+     * </ul>
+     *
+     * @param expr the arithmetic expression entered by the user
+     * @return {@code true} if the expression is valid; {@code false} otherwise
+     */
     private static boolean isValidExpression(String expr)
     {
         // An empty expression is invalid
@@ -651,6 +920,25 @@ public class Main
         return true; // Passed all checks
     }
 
+    /**
+     * Recursively evaluates a mathematical expression step-by-step while respecting operator precedence
+     * and parentheses. Each recursive call simplifies one layer of the expression.
+     * <p>
+     * The method supports the following operations:
+     * <ul>
+     *   <li>Addition (+)</li>
+     *   <li>Subtraction (-)</li>
+     *   <li>Multiplication (x)</li>
+     *   <li>Division (:)</li>
+     * </ul>
+     * Parentheses are evaluated first. Each simplification step can be printed
+     * if the {@code printSteps} flag is set to {@code true}.
+     *
+     * @param expr the arithmetic expression to evaluate
+     * @param printSteps if {@code true}, prints each step of the evaluation
+     * @return the simplified or fully evaluated expression as a {@code String}
+     * @throws ArithmeticException if division by zero occurs
+     */
     private static String evaluateStepByStep(String expr, boolean printSteps)
     {
         // Base Case: If the expression is just a single number (positive or negative)
@@ -775,43 +1063,16 @@ public class Main
         return expr;
     }
 
-    public static void StepByStepExpression()
-    {
-        Scanner input = new Scanner(System.in);
-        String expr;
-
-        // VALIDATION LOOP
-        while (true)
-        {
-            System.out.print("\nEnter an arithmetic expression (e.g., (3+5)x2 ): ");
-            expr = input.nextLine();
-            expr = expr.replaceAll("\\s+", "");
-
-            if (!isValidExpression(expr) && !expr.isEmpty())
-                System.out.println("Expression was incorrect. Re-enter a valid expression.");
-            else
-                break;
-        }
-
-        // RECURSIVE EVALUATION
-        System.out.println(expr); // Print the original, valid expression
-
-        try
-        {
-            // Start the recursive call, setting printSteps to TRUE
-            evaluateStepByStep(expr, true);
-        }
-        catch (ArithmeticException e)
-        {
-            System.out.println("Error during evaluation: Division by zero!");
-        }
-        catch (Exception e)
-        {
-            System.out.println("Error during evaluation: " + e.getMessage());
-        }
-    }
 
     /*--------------------------------------------------SubMenu C: Part 1----------------------------------------------------*/
+
+    /**
+     * Prompts the user to enter an array of double values and then calculates and displays
+     * the median, arithmetic mean, geometric mean, and harmonic mean of the array.
+     * <p>
+     * The method handles invalid or overflow inputs, computes each statistical measure,
+     * and prints the results with appropriate explanations.
+     */
     public static void StatisticalArray()
     {
         int part = 1; // to display the correct message for GetArraySize Method
@@ -821,6 +1082,7 @@ public class Main
         Scanner input = new Scanner(System.in);
 
         System.out.println("\nProceed with entering " + size + " number(s) (accepts double values like 6.5): ");
+
         for (int i = 0; i < size; i++)
         {
             while (true) {
@@ -866,7 +1128,13 @@ public class Main
             System.out.printf("The harmonic mean of the array is: %.3f\n(Usually harmonic mean does not allow negative numbers, but the answer above shows the answer if it did.)", Har_mean);
     }
 
-    // Asks user for array size and checks if the input is valid
+    /**
+     * Prompts the user to enter a valid array size and performs validation on the input.
+     * Ensures the size is at least 1 and does not exceed the predefined maximum.
+     *
+     * @param i an integer used to determine which prompt message to display (1 for array size, otherwise for dimensions)
+     * @return a valid integer representing the array size
+     */
     private static int GetArraySize(int i)
     {
         int size = 0;
@@ -893,9 +1161,9 @@ public class Main
 
             if (size < 1)
                 System.out.println("Invalid input! Size must be at least 1.");
-            else if (size > MAX_USER_INPUT)
+            else if (size > MAX_ARRAY_SIZE)
             {
-                System.out.println("Requested size is too large; limit is " + MAX_USER_INPUT + ".");
+                System.out.println("Requested size is too large; limit is " + MAX_ARRAY_SIZE + ".");
                 size = 0;
             }
 
@@ -903,7 +1171,11 @@ public class Main
         return size;
     }
 
-    // prints all the array of double elements to visualize
+    /**
+     * Prints all elements of an array of type double separated by spaces.
+     *
+     * @param arr the array of double values to be displayed
+     */
     private static void DisplayArray(double[] arr)
     {
         for (double element : arr)
@@ -911,7 +1183,13 @@ public class Main
         System.out.println();
     }
 
-    // sorts the array and returns the middle element or median of the array
+    /**
+     * Sorts the array and returns its median value.
+     *
+     * @param arr  the array of double values
+     * @param size the size of the array
+     * @return the median value of the sorted array
+     */
     private static double ArrayMedian(double[] arr, int size)
     {
         double median = 0;
@@ -925,7 +1203,13 @@ public class Main
         return median;
     }
 
-    // calculates and returns the arithmetic mean
+    /**
+     * Calculates and returns the arithmetic mean of the given array.
+     *
+     * @param arr  the array of double values
+     * @param size the size of the array
+     * @return the arithmetic mean of the array elements
+     */
     private static double ArithmeticMean(double[] arr, int size)
     {
         double avg = 0;
@@ -937,7 +1221,16 @@ public class Main
         return avg;
     }
 
-    // calculates and returns the geometric mean
+    /**
+     * Calculates and returns the geometric mean of the given array.
+     * <p>
+     * Returns 0 if any element is zero, and NaN if the product is negative
+     * (i.e., when an odd number of elements are negative).
+     *
+     * @param arr  the array of double values
+     * @param size the size of the array
+     * @return the geometric mean of the array elements, or NaN if undefined
+     */
     private static double GeometricMean(double[] arr, int size)
     {
         double avg = 1;
@@ -953,7 +1246,13 @@ public class Main
         return avg;
     }
 
-    // calls private recursive function to calculate the harmonic mean and returns its value
+    /**
+     * Calculates the harmonic mean of the array by calling a recursive helper function.
+     *
+     * @param arr  the array of double values
+     * @param size the size of the array
+     * @return the harmonic mean of the array elements
+     */
     private static double HarmonicMean(double[] arr, int size)
     {
         double sumReciprocals = harmonicHelper(arr, size, 0);
@@ -962,7 +1261,15 @@ public class Main
         return size / sumReciprocals;
     }
 
-    // private recursive function which calculates the harmonic mean
+    /**
+     * Recursively computes the sum of reciprocals of array elements to help calculate the harmonic mean.
+     * Skips elements that are zero to avoid division by zero errors.
+     *
+     * @param arr   the array of double values
+     * @param size  the size of the array
+     * @param index the current index in the recursive traversal
+     * @return the sum of reciprocals of non-zero elements
+     */
     private static double harmonicHelper(double[] arr, int size, int index)
     {
         if (index == size) // check if last element is reached
@@ -976,6 +1283,14 @@ public class Main
     }
 
     /*--------------------------------------------------SubMenu C: Part 2----------------------------------------------------*/
+
+    /**
+     * Prompts the user to enter two arrays of equal size (integers between 0 and 9),
+     * then calculates and displays the Manhattan distance, Euclidean distance,
+     * and Cosine similarity between them.
+     * <p>
+     * The method validates all user inputs and ensures both arrays have the same dimension.
+     */
     public static void TwoArraysDistance()
     {
         int part = 2; // to display the correct message for GetArraySize Method
@@ -1004,7 +1319,11 @@ public class Main
         System.out.printf("The Cosine Similarity of the two arrays is: %.3f\n", cosine_similarity);
     }
 
-    // prints all the array of integers 0 to 9 elements to visualize
+    /**
+     * Displays the elements of an array of type short separated by spaces.
+     *
+     * @param arr the array of short integers (expected range 0–9)
+     */
     private static void DisplayArray(short[] arr)
     {
         for (short element : arr)
@@ -1012,7 +1331,13 @@ public class Main
         System.out.println();
     }
 
-    // Asks user for array elements as input and checks if they are valid integers 0 to 9
+    /**
+     * Prompts the user to input valid short integer elements (0–9) into the given array.
+     * Re-prompts until all entries are valid, handling invalid, overflow, and underflow inputs.
+     *
+     * @param arr  the array to populate with user input
+     * @param size the number of elements to read
+     */
     private static void GetArrayElements(short[] arr, int size)
     {
         Scanner input = new Scanner(System.in);
@@ -1041,7 +1366,17 @@ public class Main
         }
     }
 
-    // calculates and returns Manhattan distance of the two arrays
+    /**
+     * Calculates the Manhattan distance between two arrays.
+     * <p>
+     * Manhattan distance is defined as the sum of the absolute differences
+     * between corresponding elements.
+     *
+     * @param a1   the first array
+     * @param a2   the second array
+     * @param size the size of both arrays
+     * @return the Manhattan distance as an integer
+     */
     private static int ManhattanDistance(short[] a1, short[] a2, int size)
     {
         int ans = 0;
@@ -1052,7 +1387,17 @@ public class Main
         return ans;
     }
 
-    // calculates and returns Euclidean distance of the two arrays
+    /**
+     * Calculates the Euclidean distance between two arrays.
+     * <p>
+     * Euclidean distance is defined as the square root of the sum of squared differences
+     * between corresponding elements.
+     *
+     * @param a1   the first array
+     * @param a2   the second array
+     * @param size the size of both arrays
+     * @return the Euclidean distance as a double
+     */
     private static double EuclideanDistance(short[] a1, short[] a2, int size)
     {
         double ans = 0;
@@ -1064,7 +1409,17 @@ public class Main
         return ans;
     }
 
-    // calculates and returns Cosine similarity of the two arrays
+    /**
+     * Calculates the Cosine similarity between two arrays.
+     * <p>
+     * Cosine similarity is defined as the dot product of the vectors divided by
+     * the product of their magnitudes. Returns 0 if either array has a magnitude of zero.
+     *
+     * @param a1   the first array
+     * @param a2   the second array
+     * @param size the size of both arrays
+     * @return the Cosine similarity as a double in the range [-1, 1], or 0 if undefined
+     */
     private static double CosineSimilarity(short[] a1, short[] a2, int size)
     {
         double ans = 0;
@@ -1074,8 +1429,8 @@ public class Main
         for (int i = 0; i < size; i++)
         {
             dotProduct += a1[i]*a2[i];
-            prod1 += Math.pow(a1[i], 2);
-            prod2 += Math.pow(a2[i], 2);
+            prod1 += Math.powExact(a1[i], 2);
+            prod2 += Math.powExact(a2[i], 2);
         }
         // to eliminate divisor being 0 if both elements are 0
         if (prod1 == 0 || prod2 == 0)
@@ -1089,21 +1444,66 @@ public class Main
 
     /*--------------------------------------------------SubMenu D: Connect Four----------------------------------------------------*/
 
+    /**
+     * Represents the available game modes for Connect Four.
+     * <p>
+     * The game supports two modes:
+     * <ul>
+     *   <li>{@link #PVP} — Player vs. Player (two human players)</li>
+     *   <li>{@link #PVC_RANDOM} — Player vs. Computer with random move selection</li>
+     * </ul>
+     */
     enum Mode
     {
         PVP, PVC_RANDOM
     }
 
+    /**
+     * Creates and initializes a new Connect Four board with the given number of rows and columns.
+     * <p>
+     * Each cell of the board is initially set to 0, where:
+     * <ul>
+     *   <li>0 = empty cell</li>
+     *   <li>1 = Player 1's piece</li>
+     *   <li>2 = Player 2's piece</li>
+     * </ul>
+     *
+     * @param rows the number of rows in the board
+     * @param cols the number of columns in the board
+     * @return a 2D integer array representing the empty game board
+     */
     private static int[][] createBoard(int rows, int cols)
     {
         return new int[rows][cols]; // 0 empty, 1 P1, 2 P2
     }
 
+    /**
+     * Checks whether the specified column in the board is already full.
+     * <p>
+     * A column is considered full if its topmost cell (row 0) is not empty (i.e., not equal to 0).
+     *
+     * @param board the 2D game board array
+     * @param c the column index to check
+     * @return {@code true} if the column is full, {@code false} otherwise
+     * @throws ArrayIndexOutOfBoundsException if the column index is invalid
+     */
     private static boolean isColumnFull(int[][] board, int c)
     {
         return board[0][c] != 0;
     }
 
+    /**
+     * Attempts to drop a player's piece into the specified column on the board.
+     * <p>
+     * The function checks if the column index is valid and not full.
+     * Starting from the bottom row, it finds the first empty cell (value 0)
+     * and places the player's piece (1 or 2) there.
+     *
+     * @param board  the 2D array representing the game board, where 0 = empty, 1 = player 1, and 2 = player 2
+     * @param c      the column index where the player wants to drop their piece
+     * @param player the player number (1 or 2)
+     * @return {@code true} if the piece was successfully placed; {@code false} if the column is invalid or full
+     */
     private static boolean drop(int[][] board, int c, int player)
     {
         int rows = board.length;
@@ -1121,6 +1521,17 @@ public class Main
         return false;
     }
 
+    /**
+     * Checks whether there are any valid moves left on the board.
+     * <p>
+     * The function iterates over all columns and returns {@code true}
+     * if at least one column is not full (i.e., has an empty space).
+     * Otherwise, it returns {@code false}, indicating that the game board
+     * is completely filled and no further moves can be made.
+     *
+     * @param board the 2D array representing the game board
+     * @return {@code true} if there is at least one available move; {@code false} if all columns are full
+    */
     private static boolean hasMoves(int[][] board)
     {
         int cols = board[0].length;
@@ -1130,6 +1541,21 @@ public class Main
         return false;
     }
 
+    /**
+     * Prints the current state of the game board to the console.
+     * <p>
+     * The function first clears the screen and then displays the board
+     * with its dimensions. Each cell is represented as:
+     * <ul>
+     *   <li><code>.</code> for an empty cell</li>
+     *   <li><code>X</code> for player 1</li>
+     *   <li><code>O</code> for player 2</li>
+     * </ul>
+     * At the bottom of the printed board, column numbers are shown to
+     * guide the player for input selection.
+     *
+     * @param board the 2D array representing the game board
+     */
     private static void printBoard(int[][] board)
     {
         Main.clearScreen();
@@ -1165,6 +1591,18 @@ public class Main
         System.out.println("\n");
     }
 
+    /**
+     * Checks whether the given player has achieved a winning condition on the board.
+     * <p>
+     * A winning move occurs when the player has four consecutive pieces aligned
+     * horizontally, vertically, or diagonally (either down-right or up-right).
+     * <p>
+     * The function scans all possible directions on the board to detect such a sequence.
+     *
+     * @param board  the 2D array representing the game board, where 0 = empty, 1 = player 1, and 2 = player 2
+     * @param player the player number (1 or 2) to check for a winning condition
+     * @return {@code true} if the player has four consecutive pieces in any direction; {@code false} otherwise
+     */
     private static boolean isWinningMove(int[][] board, int player)
     {
         int rows = board.length;
@@ -1213,6 +1651,16 @@ public class Main
         return false;
     }
 
+    /**
+     * Returns a list of all legal (available) column moves on the board.
+     * <p>
+     * The function iterates through all columns and adds the indices
+     * of those that are not full, meaning a player can still drop a piece there.
+     * This is typically used by AI decision logic or to validate player input.
+     *
+     * @param board the 2D array representing the game board
+     * @return a list of column indices where a piece can legally be dropped
+     */
     private static List<Integer> legalMoves(int[][] board)
     {
         int cols = board[0].length;
@@ -1223,7 +1671,16 @@ public class Main
         return moves;
     }
 
-    // --- AI: Random ---
+    /**
+     * Selects a random legal column for the computer player.
+     * <p>
+     * The method gathers all legal moves via {@link #legalMoves(int[][])}
+     * and returns one uniformly at random.
+     *
+     * @param board the 2D array representing the game board
+     * @return the chosen column index (0-based) among the legal moves
+     * @throws IllegalArgumentException if there are no legal moves available
+     */
     private static int aiMoveRandom(int[][] board)
     {
         List<Integer> moves = legalMoves(board);
@@ -1231,7 +1688,24 @@ public class Main
         return moves.get(rng.nextInt(moves.size()));
     }
 
-    // --------- Running Function ---------
+    /**
+     * Runs the Connect Four submenu flow (board size selection, mode selection, and game loop).
+     * <p>
+     * Features:
+     * <ul>
+     *   <li>Board sizes: 5x4, 6x5, 7x6</li>
+     *   <li>Modes: 2 Players (PvP) or Single Player vs. Random AI</li>
+     *   <li>Human can forfeit by entering <code>q</code> on their turn</li>
+     *   <li>Game ends on win or draw (full board)</li>
+     * </ul>
+     * The board uses <code>0</code> for empty, <code>1</code> for Player&nbsp;1 (X),
+     * and <code>2</code> for Player&nbsp;2 (O).
+     *
+     * @implNote Uses helper methods such as {@link #askInt(Scanner, String, int, int)},
+     * {@link #printBoard(int[][])}, {@link #hasMoves(int[][])}, {@link #isColumnFull(int[][], int)},
+     * {@link #aiMoveRandom(int[][])}, {@link #drop(int[][], int, int)}, and
+     * {@link #isWinningMove(int[][], int)}. Clears the screen via {@code Main.clearScreen()}.
+     */
     static void SubmenuD_ConnectFour()
     {
         Scanner sc = new Scanner(System.in);
@@ -1336,7 +1810,15 @@ public class Main
         sc.nextLine();
     }
 
-
+    /**
+     * Prompts the user for an integer within a closed interval and validates the input.
+     *
+     * @param sc     the scanner used to read input from the console
+     * @param prompt the prompt message to display
+     * @param min    the minimum accepted value (inclusive)
+     * @param max    the maximum accepted value (inclusive)
+     * @return the validated integer entered by the user in the range [min, max]
+     */
     static int askInt(Scanner sc, String prompt, int min, int max)
     {
         while (true)
@@ -1354,12 +1836,26 @@ public class Main
         }
     }
 
+    /**
+     * Waits for the user to press Enter before continuing.
+     *
+     * @param sc the scanner used to read the newline from the console
+     */
     static void pause(Scanner sc)
     {
         System.out.print("Press Enter to continue...");
         sc.nextLine();
     }
 
+    /**
+     * Pauses execution for the specified number of milliseconds.
+     * <p>
+     * This method wraps {@link Thread#sleep(long)} and ignores any {@link InterruptedException}.
+     * It is primarily used in the Connect Four game to add a small delay when the computer
+     * makes a move, improving the user experience by making the game feel more natural.
+     *
+     * @param ms the duration to sleep in milliseconds
+     */
     static void sleep(long ms)
     {
         try
@@ -1367,8 +1863,32 @@ public class Main
             Thread.sleep(ms);
         } catch (InterruptedException ignored) {}
     }
-    
+
     /*--------------------------------------------------MAIN FUNCTION----------------------------------------------------*/
+
+    /**
+     * Entry point of the program.
+     * <p>
+     * This method displays the welcome screen and the main menu, then handles
+     * user interaction for all submenus, including:
+     * <ul>
+     *     <li>Primary School Menu (Submenu A): Age and Zodiac, Reverse Words</li>
+     *     <li>Secondary School Menu (Submenu B): Prime Numbers, Step-by-Step Expression Evaluation</li>
+     *     <li>High School Menu (Submenu C): Statistical Array, Two Arrays Distance</li>
+     *     <li>Connect Four Menu (Submenu D): Play Connect Four game</li>
+     * </ul>
+     * The method loops continuously until the user chooses to exit.
+     * <p>
+     * User input is validated to handle invalid choices, overflow/underflow, and
+     * attempts to enter text when numbers are expected.
+     * Submenu options typically return to their menu after execution unless the
+     * user chooses to go back to the main menu.
+     * <p>
+     * The method uses {@link #clearScreen()} to refresh the console for better UX,
+     * and prompts the user to press Enter to continue between submenu executions.
+     *
+     * @param args command-line arguments (ignored in this program)
+     */
     public static void main(String[] args)
     {
         WelcomeScreen();
@@ -1522,7 +2042,9 @@ public class Main
                     clearScreen();
                     break;
                 case 'e':
-                    System.out.println("\nYou chose to exit the program.");
+                    clearScreen();
+                    System.out.println("\nYou chose to exit the program.\n");
+                    ThankYouScreen();
                     break;
                 default:
                     clearScreen();
@@ -1531,10 +2053,5 @@ public class Main
         } while (!ValidSubmenu(letter));
 
     }
+    
 }
-
-
-
-
-
-
