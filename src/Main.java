@@ -40,16 +40,62 @@ public class Main {
 
     /*=========================== SUBMENU D — CONNECT FOUR ===========================*/
 
+    /**
+     * Represents the available game modes for Connect Four.
+     * <p>
+     * The game supports two modes:
+     * <ul>
+     *   <li>{@link #PVP} — Player vs. Player (two human players)</li>
+     *   <li>{@link #PVC_RANDOM} — Player vs. Computer with random move selection</li>
+     * </ul>
+     */
     enum Mode { PVP, PVC_RANDOM }
 
+    /**
+     * Creates and initializes a new Connect Four board with the given number of rows and columns.
+     * <p>
+     * Each cell of the board is initially set to 0, where:
+     * <ul>
+     *   <li>0 = empty cell</li>
+     *   <li>1 = Player 1's piece</li>
+     *   <li>2 = Player 2's piece</li>
+     * </ul>
+     *
+     * @param rows the number of rows in the board
+     * @param cols the number of columns in the board
+     * @return a 2D integer array representing the empty game board
+    */
     private static int[][] createBoard(int rows, int cols) {
         return new int[rows][cols]; // 0 empty, 1 P1, 2 P2
     }
 
+    /**
+    * Checks whether the specified column in the board is already full.
+    * <p>
+    * A column is considered full if its topmost cell (row 0) is not empty (i.e., not equal to 0).
+    *
+    * @param board the 2D game board array
+    * @param c the column index to check
+    * @return {@code true} if the column is full, {@code false} otherwise
+    * @throws ArrayIndexOutOfBoundsException if the column index is invalid
+    */
     private static boolean isColumnFull(int[][] board, int c) {
         return board[0][c] != 0;
     }
 
+
+    /**
+     * Attempts to drop a player's piece into the specified column on the board.
+     * <p>
+     * The function checks if the column index is valid and not full.
+     * Starting from the bottom row, it finds the first empty cell (value 0)
+     * and places the player's piece (1 or 2) there.
+     *
+     * @param board  the 2D array representing the game board, where 0 = empty, 1 = player 1, and 2 = player 2
+     * @param c      the column index where the player wants to drop their piece
+     * @param player the player number (1 or 2)
+     * @return {@code true} if the piece was successfully placed; {@code false} if the column is invalid or full
+    */
     private static boolean drop(int[][] board, int c, int player) {
         int rows = board.length;
         int cols = board[0].length;
@@ -63,12 +109,39 @@ public class Main {
         return false;
     }
 
+    /**
+     * Checks whether there are any valid moves left on the board.
+     * <p>
+     * The function iterates over all columns and returns {@code true}
+     * if at least one column is not full (i.e., has an empty space).
+     * Otherwise, it returns {@code false}, indicating that the game board
+     * is completely filled and no further moves can be made.
+     *
+     * @param board the 2D array representing the game board
+     * @return {@code true} if there is at least one available move; {@code false} if all columns are full
+     */
     private static boolean hasMoves(int[][] board) {
         int cols = board[0].length;
         for (int c = 0; c < cols; c++) if (!isColumnFull(board, c)) return true;
         return false;
     }
 
+
+    /**
+     * Prints the current state of the game board to the console.
+     * <p>
+     * The function first clears the screen and then displays the board
+     * with its dimensions. Each cell is represented as:
+     * <ul>
+     *   <li><code>.</code> for an empty cell</li>
+     *   <li><code>X</code> for player 1</li>
+     *   <li><code>O</code> for player 2</li>
+     * </ul>
+     * At the bottom of the printed board, column numbers are shown to
+     * guide the player for input selection.
+     *
+     * @param board the 2D array representing the game board
+     */
     private static void printBoard(int[][] board) {
         Main.clearScreen();
         int rows = board.length;
@@ -95,6 +168,19 @@ public class Main {
         System.out.println("\n");
     }
 
+
+    /**
+     * Checks whether the given player has achieved a winning condition on the board.
+     * <p>
+     * A winning move occurs when the player has four consecutive pieces aligned
+     * horizontally, vertically, or diagonally (either down-right or up-right).
+     * <p>
+     * The function scans all possible directions on the board to detect such a sequence.
+     *
+     * @param board  the 2D array representing the game board, where 0 = empty, 1 = player 1, and 2 = player 2
+     * @param player the player number (1 or 2) to check for a winning condition
+     * @return {@code true} if the player has four consecutive pieces in any direction; {@code false} otherwise
+     */
     private static boolean isWinningMove(int[][] board, int player) {
         int rows = board.length;
         int cols = board[0].length;
@@ -134,6 +220,16 @@ public class Main {
         return false;
     }
 
+    /**
+     * Returns a list of all legal (available) column moves on the board.
+     * <p>
+     * The function iterates through all columns and adds the indices
+     * of those that are not full, meaning a player can still drop a piece there.
+     * This is typically used by AI decision logic or to validate player input.
+     *
+     * @param board the 2D array representing the game board
+     * @return a list of column indices where a piece can legally be dropped
+     */
     private static List<Integer> legalMoves(int[][] board) {
         int cols = board[0].length;
         List<Integer> moves = new ArrayList<>();
@@ -143,14 +239,40 @@ public class Main {
         return moves;
     }
 
-    // --- AI: Random ---
+    /**
+     * Selects a random legal column for the computer player.
+     * <p>
+     * The method gathers all legal moves via {@link #legalMoves(int[][])}
+     * and returns one uniformly at random.
+     *
+     * @param board the 2D array representing the game board
+     * @return the chosen column index (0-based) among the legal moves
+     * @throws IllegalArgumentException if there are no legal moves available
+     */
     private static int aiMoveRandom(int[][] board) {
         List<Integer> moves = legalMoves(board);
         Random rng = new Random();
         return moves.get(rng.nextInt(moves.size()));
     }
 
-    // --------- Running Function ---------
+    /**
+     * Runs the Connect Four submenu flow (board size selection, mode selection, and game loop).
+     * <p>
+     * Features:
+     * <ul>
+     *   <li>Board sizes: 5x4, 6x5, 7x6</li>
+     *   <li>Modes: 2 Players (PvP) or Single Player vs. Random AI</li>
+     *   <li>Human can forfeit by entering <code>q</code> on their turn</li>
+     *   <li>Game ends on win or draw (full board)</li>
+     * </ul>
+     * The board uses <code>0</code> for empty, <code>1</code> for Player&nbsp;1 (X),
+     * and <code>2</code> for Player&nbsp;2 (O).
+     *
+     * @implNote Uses helper methods such as {@link #askInt(Scanner, String, int, int)},
+     * {@link #printBoard(int[][])}, {@link #hasMoves(int[][])}, {@link #isColumnFull(int[][], int)},
+     * {@link #aiMoveRandom(int[][])}, {@link #drop(int[][], int, int)}, and
+     * {@link #isWinningMove(int[][], int)}. Clears the screen via {@code Main.clearScreen()}.
+     */
     static void SubmenuD_ConnectFour() {
         Scanner sc = new Scanner(System.in);
 
@@ -174,7 +296,7 @@ public class Main {
 
         int[][] board = createBoard(rows, cols);
         int current = 1; // 1 = X (Player 1), 2 = O (Player 2/Computer)
-        boolean humanIsP1 = true; // PvC'de insan X oynar (varsayılan)
+        boolean humanIsP1 = true; 
 
         while (true) {
             printBoard(board);
@@ -243,7 +365,15 @@ public class Main {
         sc.nextLine();
     }
 
-    
+    /**
+     * Prompts the user for an integer within a closed interval and validates the input.
+     *
+     * @param sc     the scanner used to read input from the console
+     * @param prompt the prompt message to display
+     * @param min    the minimum accepted value (inclusive)
+     * @param max    the maximum accepted value (inclusive)
+     * @return the validated integer entered by the user in the range [min, max]
+     */
     static int askInt(Scanner sc, String prompt, int min, int max) {
         while (true) {
             System.out.print(prompt);
@@ -256,11 +386,21 @@ public class Main {
         }
     }
 
+    /**
+     * Waits for the user to press Enter before continuing.
+     *
+     * @param sc the scanner used to read the newline from the console
+     */
     static void pause(Scanner sc) {
         System.out.print("Press Enter to continue...");
         sc.nextLine();
     }
 
+    /**
+     * Sleeps the current thread for the given number of milliseconds.
+     *
+     * @param ms the duration to sleep in milliseconds
+     */
     static void sleep(long ms) {
         try { Thread.sleep(ms); } catch (InterruptedException ignored) {}
     }
