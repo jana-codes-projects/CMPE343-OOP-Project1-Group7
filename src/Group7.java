@@ -815,6 +815,7 @@ public class Group7
      * <p>
      * If the expression is invalid, the user is asked to re-enter it. The evaluation
      * process prints each simplification step to the console.
+     * </p>
      */
     public static void StepByStepExpression()
     {
@@ -864,6 +865,7 @@ public class Group7
      *   <li>Empty parentheses (e.g., "()")</li>
      *   <li>Invalid starting or ending characters (e.g., "+3", "3x")</li>
      * </ul>
+     * </p>
      *
      * @param expr the arithmetic expression entered by the user
      * @return {@code true} if the expression is valid; {@code false} otherwise
@@ -936,6 +938,7 @@ public class Group7
      * </ul>
      * Parentheses are evaluated first. Each simplification step can be printed
      * if the {@code printSteps} flag is set to {@code true}.
+     * </p>
      *
      * @param expr the arithmetic expression to evaluate
      * @param printSteps if {@code true}, prints each step of the evaluation
@@ -1075,6 +1078,7 @@ public class Group7
      * <p>
      * The method handles invalid or overflow inputs, computes each statistical measure,
      * and prints the results with appropriate explanations.
+     * </p>
      */
     public static void StatisticalArray()
     {
@@ -1229,6 +1233,7 @@ public class Group7
      * <p>
      * Returns 0 if any element is zero, and NaN if the product is negative
      * (i.e., when an odd number of elements are negative).
+     * </p>
      *
      * @param arr  the array of double values
      * @param size the size of the array
@@ -1293,6 +1298,7 @@ public class Group7
      * and Cosine similarity between them.
      * <p>
      * The method validates all user inputs and ensures both arrays have the same dimension.
+     * </p>
      */
     public static void TwoArraysDistance()
     {
@@ -1374,6 +1380,7 @@ public class Group7
      * <p>
      * Manhattan distance is defined as the sum of the absolute differences
      * between corresponding elements.
+     * </p>
      *
      * @param a1   the first array
      * @param a2   the second array
@@ -1395,6 +1402,7 @@ public class Group7
      * <p>
      * Euclidean distance is defined as the square root of the sum of squared differences
      * between corresponding elements.
+     * </p>
      *
      * @param a1   the first array
      * @param a2   the second array
@@ -1417,6 +1425,7 @@ public class Group7
      * <p>
      * Cosine similarity is defined as the dot product of the vectors divided by
      * the product of their magnitudes. Returns 0 if either array has a magnitude of zero.
+     * </p>
      *
      * @param a1   the first array
      * @param a2   the second array
@@ -2071,5 +2080,6 @@ public class Group7
     }
     
 }
+
 
 
