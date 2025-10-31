@@ -1522,7 +1522,7 @@ public class Main
                     clearScreen();
                     break;
                 case 'e':
-                    System.out.println("You chose to exit the program.");
+                    System.out.println("\nYou chose to exit the program.");
                     break;
                 default:
                     clearScreen();
@@ -1532,6 +1532,7 @@ public class Main
 
     }
 }
+
 
 
 
