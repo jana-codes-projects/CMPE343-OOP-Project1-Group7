@@ -402,7 +402,7 @@ public class Group7
      * @param daysInMonth array representing the number of days in each month
      * @return {@code true} if the date is valid; {@code false} otherwise
      */
-    private static boolean isValidDate(short day, short month, short year, short[] daysInMonth)
+    protected static boolean isValidDate(short day, short month, short year, short[] daysInMonth)
     {
         // Adjust for leap year
         boolean isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
@@ -427,7 +427,7 @@ public class Group7
      * @param daysInMonth array containing number of days per month
      * @return an integer array containing {years, months, days} of age
      */
-    private static int[] calculateAge(short birthDay, short birthMonth, short birthYear, int currentDay, int currentMonth, int currentYear, short[] daysInMonth)
+    protected static int[] calculateAge(short birthDay, short birthMonth, short birthYear, int currentDay, int currentMonth, int currentYear, short[] daysInMonth)
     {
         if (birthDay > currentDay)
         {
@@ -455,7 +455,7 @@ public class Group7
      * @param month the month of birth
      * @return the zodiac sign as a string (e.g., "Aries", "Taurus")
      */
-    private static String calculateZodiac(int day, int month)
+    protected static String calculateZodiac(int day, int month)
     {
         String zodiac = "";
 
@@ -519,7 +519,7 @@ public class Group7
      * @param sentence the sentence to reverse
      * @return a new string where each word in the sentence is reversed
      */
-    private static String reverseSentence(String sentence)
+    protected static String reverseSentence(String sentence)
     {
         if (sentence.isEmpty())
             return "";
@@ -544,7 +544,7 @@ public class Group7
      * @param word the word to reverse
      * @return the reversed word
      */
-    private static String reverseWord(String word)
+    protected static String reverseWord(String word)
     {
         if (word.length() < 2)
             return word;
@@ -563,7 +563,7 @@ public class Group7
      * @param right the current right index
      * @return the word with its letters reversed
      */
-    private static String reverseWordRecursive(String word, int left, int right)
+    protected static String reverseWordRecursive(String word, int left, int right)
     {
         char[] chars = word.toCharArray();
         if (left >= right)
@@ -717,7 +717,7 @@ public class Group7
      * @param n the upper limit for prime number generation
      * @return a boolean array where {@code true} indicates a prime number
      */
-    private static boolean[] Eratosthenes(int n)
+    protected static boolean[] Eratosthenes(int n)
     {
         boolean[] prime = new boolean[n + 1];
         Arrays.fill(prime, true);
@@ -743,7 +743,7 @@ public class Group7
      * @param n the upper limit for prime number generation
      * @return a boolean array where {@code true} indicates a prime number
      */
-    private static boolean[] Sundaram(int n)
+    protected static boolean[] Sundaram(int n)
     {
         int k = (n - 1) / 2;
         boolean[] marked = new boolean[k + 1];
@@ -772,7 +772,7 @@ public class Group7
      * @param n the upper limit for prime number generation
      * @return a boolean array where {@code true} indicates a prime number
      */
-    private static boolean[] Atkin(int n)
+    protected static boolean[] Atkin(int n)
     {
         boolean[] prime = new boolean[n + 1];
         if (n > 2) prime[2] = true;
@@ -870,7 +870,7 @@ public class Group7
      * @param expr the arithmetic expression entered by the user
      * @return {@code true} if the expression is valid; {@code false} otherwise
      */
-    private static boolean isValidExpression(String expr)
+    protected static boolean isValidExpression(String expr)
     {
         // An empty expression is invalid
         if (expr.isEmpty())
@@ -945,7 +945,7 @@ public class Group7
      * @return the simplified or fully evaluated expression as a {@code String}
      * @throws ArithmeticException if division by zero occurs
      */
-    private static String evaluateStepByStep(String expr, boolean printSteps)
+    protected static String evaluateStepByStep(String expr, boolean printSteps)
     {
         // Base Case: If the expression is just a single number (positive or negative)
         if (expr.matches("^-?[0-9]+$"))
@@ -1142,7 +1142,7 @@ public class Group7
      * @param i an integer used to determine which prompt message to display (1 for array size, otherwise for dimensions)
      * @return a valid integer representing the array size
      */
-    private static int GetArraySize(int i)
+    protected static int GetArraySize(int i)
     {
         int size = 0;
         Scanner input = new Scanner(System.in);
@@ -1183,7 +1183,7 @@ public class Group7
      *
      * @param arr the array of double values to be displayed
      */
-    private static void DisplayArray(double[] arr)
+    protected static void DisplayArray(double[] arr)
     {
         for (double element : arr)
             System.out.print(element + " ");
@@ -1197,7 +1197,7 @@ public class Group7
      * @param size the size of the array
      * @return the median value of the sorted array
      */
-    private static double ArrayMedian(double[] arr, int size)
+    protected static double ArrayMedian(double[] arr, int size)
     {
         double median = 0;
         // sort array to find middle element
@@ -1217,7 +1217,7 @@ public class Group7
      * @param size the size of the array
      * @return the arithmetic mean of the array elements
      */
-    private static double ArithmeticMean(double[] arr, int size)
+    protected static double ArithmeticMean(double[] arr, int size)
     {
         double avg = 0;
         for (double element : arr)
@@ -1239,7 +1239,7 @@ public class Group7
      * @param size the size of the array
      * @return the geometric mean of the array elements, or NaN if undefined
      */
-    private static double GeometricMean(double[] arr, int size)
+    protected static double GeometricMean(double[] arr, int size)
     {
         double avg = 1;
         for (double element : arr)
@@ -1261,7 +1261,7 @@ public class Group7
      * @param size the size of the array
      * @return the harmonic mean of the array elements
      */
-    private static double HarmonicMean(double[] arr, int size)
+    protected static double HarmonicMean(double[] arr, int size)
     {
         double sumReciprocals = harmonicHelper(arr, size, 0);
         if (sumReciprocals == 0)
@@ -1278,7 +1278,7 @@ public class Group7
      * @param index the current index in the recursive traversal
      * @return the sum of reciprocals of non-zero elements
      */
-    private static double harmonicHelper(double[] arr, int size, int index)
+    protected static double harmonicHelper(double[] arr, int size, int index)
     {
         if (index == size) // check if last element is reached
             return 0;
@@ -1333,7 +1333,7 @@ public class Group7
      *
      * @param arr the array of short integers (expected range 0–9)
      */
-    private static void DisplayArray(short[] arr)
+    protected static void DisplayArray(short[] arr)
     {
         for (short element : arr)
             System.out.print(element + " ");
@@ -1347,7 +1347,7 @@ public class Group7
      * @param arr  the array to populate with user input
      * @param size the number of elements to read
      */
-    private static void GetArrayElements(short[] arr, int size)
+    protected static void GetArrayElements(short[] arr, int size)
     {
         Scanner input = new Scanner(System.in);
 
@@ -1387,7 +1387,7 @@ public class Group7
      * @param size the size of both arrays
      * @return the Manhattan distance as an integer
      */
-    private static int ManhattanDistance(short[] a1, short[] a2, int size)
+    protected static int ManhattanDistance(short[] a1, short[] a2, int size)
     {
         int ans = 0;
         for (int i = 0; i < size; i++)
@@ -1409,7 +1409,7 @@ public class Group7
      * @param size the size of both arrays
      * @return the Euclidean distance as a double
      */
-    private static double EuclideanDistance(short[] a1, short[] a2, int size)
+    protected static double EuclideanDistance(short[] a1, short[] a2, int size)
     {
         double ans = 0;
         for (int i = 0; i < size; i++)
@@ -1432,7 +1432,7 @@ public class Group7
      * @param size the size of both arrays
      * @return the Cosine similarity as a double in the range [-1, 1], or 0 if undefined
      */
-    private static double CosineSimilarity(short[] a1, short[] a2, int size)
+    protected static double CosineSimilarity(short[] a1, short[] a2, int size)
     {
         double ans = 0;
         int dotProduct = 0;
@@ -1486,7 +1486,7 @@ public class Group7
      * @param cols the number of columns in the board
      * @return a 2D integer array representing the empty game board
      */
-    private static int[][] createBoard(int rows, int cols)
+    protected static int[][] createBoard(int rows, int cols)
     {
         return new int[rows][cols]; // 0 empty, 1 P1, 2 P2
     }
@@ -1502,7 +1502,7 @@ public class Group7
      * @return {@code true} if the column is full, {@code false} otherwise
      * @throws ArrayIndexOutOfBoundsException if the column index is invalid
      */
-    private static boolean isColumnFull(int[][] board, int c)
+    protected static boolean isColumnFull(int[][] board, int c)
     {
         return board[0][c] != 0;
     }
@@ -1520,7 +1520,7 @@ public class Group7
      * @param player the player number (1 or 2)
      * @return {@code true} if the piece was successfully placed; {@code false} if the column is invalid or full
      */
-    private static boolean drop(int[][] board, int c, int player)
+    protected static boolean drop(int[][] board, int c, int player)
     {
         int rows = board.length;
         int cols = board[0].length;
@@ -1549,7 +1549,7 @@ public class Group7
      * @param board the 2D array representing the game board
      * @return {@code true} if there is at least one available move; {@code false} if all columns are full
     */
-    private static boolean hasMoves(int[][] board)
+    protected static boolean hasMoves(int[][] board)
     {
         int cols = board[0].length;
         for (int c = 0; c < cols; c++)
@@ -1574,7 +1574,7 @@ public class Group7
      *
      * @param board the 2D array representing the game board
      */
-    private static void printBoard(int[][] board)
+    protected static void printBoard(int[][] board)
     {
         Main.clearScreen();
         int rows = board.length;
@@ -1621,7 +1621,7 @@ public class Group7
      * @param player the player number (1 or 2) to check for a winning condition
      * @return {@code true} if the player has four consecutive pieces in any direction; {@code false} otherwise
      */
-    private static boolean isWinningMove(int[][] board, int player)
+    protected static boolean isWinningMove(int[][] board, int player)
     {
         int rows = board.length;
         int cols = board[0].length;
@@ -1680,7 +1680,7 @@ public class Group7
      * @param board the 2D array representing the game board
      * @return a list of column indices where a piece can legally be dropped
      */
-    private static List<Integer> legalMoves(int[][] board)
+    protected static List<Integer> legalMoves(int[][] board)
     {
         int cols = board[0].length;
         List<Integer> moves = new ArrayList<>();
@@ -1690,6 +1690,7 @@ public class Group7
         return moves;
     }
 
+    
     /**
      * Selects a random legal column for the computer player.
      * <p>
@@ -1701,7 +1702,7 @@ public class Group7
      * @return the chosen column index (0-based) among the legal moves
      * @throws IllegalArgumentException if there are no legal moves available
      */
-    private static int aiMoveRandom(int[][] board)
+    protected static int aiMoveRandom(int[][] board)
     {
         List<Integer> moves = legalMoves(board);
         Random rng = new Random();
@@ -1709,6 +1710,8 @@ public class Group7
     }
 
     /**
+     * Connect Four menu and game loop.
+     * Allows selection of board size and game mode (PvP or PvC Random).
      * Runs the Connect Four submenu flow (board size selection, mode selection, and game loop).
      * <p>
      * Features:
@@ -1727,7 +1730,7 @@ public class Group7
      * {@link #aiMoveRandom(int[][])}, {@link #drop(int[][], int, int)}, and
      * {@link #isWinningMove(int[][], int)}. Clears the screen via {@code Main.clearScreen()}.
      */
-    static void SubmenuD_ConnectFour()
+    public static void SubmenuD_ConnectFour()
     {
         Scanner sc = new Scanner(System.in);
         final String BRIGHT_BLUE = "\u001B[94m";
@@ -1831,6 +1834,7 @@ public class Group7
         sc.nextLine();
     }
 
+    
     /**
      * Prompts the user for an integer within a closed interval and validates the input.
      *
@@ -1840,7 +1844,7 @@ public class Group7
      * @param max    the maximum accepted value (inclusive)
      * @return the validated integer entered by the user in the range [min, max]
      */
-    static int askInt(Scanner sc, String prompt, int min, int max)
+    protected static int askInt(Scanner sc, String prompt, int min, int max)
     {
         while (true)
         {
@@ -1862,7 +1866,7 @@ public class Group7
      *
      * @param sc the scanner used to read the newline from the console
      */
-    static void pause(Scanner sc)
+    protected static void pause(Scanner sc)
     {
         System.out.print("Press Enter to continue...");
         sc.nextLine();
@@ -1878,7 +1882,7 @@ public class Group7
      *
      * @param ms the duration to sleep in milliseconds
      */
-    static void sleep(long ms)
+    protected static void sleep(long ms)
     {
         try
         {
@@ -1899,11 +1903,15 @@ public class Group7
      *     <li>High School Menu (Submenu C): Statistical Array, Two Arrays Distance</li>
      *     <li>Connect Four Menu (Submenu D): Play Connect Four game</li>
      * </ul>
+     * </p>
      * The method loops continuously until the user chooses to exit.
+     * <p>
      * User input is validated to handle invalid choices, overflow/underflow, and
      * attempts to enter text when numbers are expected.
+     * </p>
      * Submenu options typically return to their menu after execution unless the
      * user chooses to go back to the main menu.
+     * <p>
      * The method uses {@link #clearScreen()} to refresh the console for better UX,
      * and prompts the user to press Enter to continue between submenu executions.
      * </p>
@@ -2076,6 +2084,7 @@ public class Group7
     }
     
 }
+
 
 
 
