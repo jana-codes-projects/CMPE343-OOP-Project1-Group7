@@ -21,7 +21,7 @@ public class Group7
      * <p>
      * Prints a colorful ASCII art welcome banner with group information and
      * project title using ANSI color codes.
-     * </p>
+     *  
      */
     public static void WelcomeScreen()
     {
@@ -67,7 +67,7 @@ public class Group7
      * <p>
      * Shows submenu choices for different school levels and an option to terminate
      * the program. Prompts the user to select an option by entering a letter.
-     * </p>
+     *  
      */
     public static void PrintMainMenu()
     {
@@ -101,7 +101,7 @@ public class Group7
      * <p>
      * This method prints ANSI escape codes and several blank lines to simulate
      * clearing the terminal window for better readability between sections.
-     * </p>
+     *  
      */
     public static void clearScreen()
     {
@@ -177,7 +177,7 @@ public class Group7
      *   <li>Return to Main Menu</li>
      * </ul>
      * Prompts the user to select one of the options.
-     * </p>
+     *  
      */
     public static void PrintSubmenuA()
     {
@@ -200,7 +200,7 @@ public class Group7
      *   <li>Return to Main Menu</li>
      * </ul>
      * Prompts the user to select a number corresponding to their choice.
-     * </p>
+     *  
      */
     public static void PrintSubmenuB()
     {
@@ -223,7 +223,7 @@ public class Group7
      *   <li>Return to Main Menu</li>
      * </ul>
      * Prompts the user to select a number corresponding to their choice.
-     * </p>
+     *  
      */
     public static void PrintSubmenuC()
     {
@@ -244,7 +244,7 @@ public class Group7
      * Prompts the user to enter their birth date (day, month, year), validates the date,
      * and then computes their current age based on the system date. It also determines
      * the user's zodiac sign based on their birth date.
-     * </p>
+     *  
      */
     public static void AgeAndZodiac()
     {
@@ -394,7 +394,7 @@ public class Group7
      * Validates whether a given date is legitimate.
      * <p>
      * Considers the number of days in each month and adjusts for leap years.
-     * </p>
+     *  
      *
      * @param day the day of the month
      * @param month the month (1–12)
@@ -495,7 +495,7 @@ public class Group7
      * <p>
      * This method takes user input, calls the {@code reverseSentence()} method
      * to reverse each word in the sentence recursively, and prints the result.
-     * </p>
+     *  
      */
     public static void ReverseWords()
     {
@@ -514,7 +514,7 @@ public class Group7
      * <p>
      * Splits the sentence at the first space, reverses the first word using
      * {@code reverseWord()}, and then recursively processes the rest of the sentence.
-     * </p>
+     *  
      *
      * @param sentence the sentence to reverse
      * @return a new string where each word in the sentence is reversed
@@ -539,7 +539,7 @@ public class Group7
      * If the word length is less than 2, it returns the word unchanged.
      * Otherwise, it calls {@code reverseWordRecursive()} to reverse
      * the characters in the word.
-     * </p>
+     *  
      *
      * @param word the word to reverse
      * @return the reversed word
@@ -556,7 +556,7 @@ public class Group7
      * <p>
      * Swaps letters from both ends of the word until the middle is reached.
      * Non-letter characters are skipped and remain in place.
-     * </p>
+     *  
      *
      * @param word  the word to reverse
      * @param left  the current left index
@@ -596,7 +596,7 @@ public class Group7
      *   <li>Measures and compares execution time</li>
      * </ul>
      * Handles invalid, small, and excessively large inputs with appropriate messages.
-     * </p>
+     *  
      */
     public static void PrimeNumbers()
     {
@@ -712,7 +712,7 @@ public class Group7
      * Implements the Sieve of Eratosthenes algorithm for finding all prime numbers up to n.
      * <p>
      * Marks multiples of each prime as non-prime, starting from 2.
-     * </p>
+     *  
      *
      * @param n the upper limit for prime number generation
      * @return a boolean array where {@code true} indicates a prime number
@@ -738,7 +738,7 @@ public class Group7
      * <p>
      * Eliminates numbers of the form i + j + 2ij and maps remaining values
      * to primes using the formula 2i + 1.
-     * </p>
+     *  
      *
      * @param n the upper limit for prime number generation
      * @return a boolean array where {@code true} indicates a prime number
@@ -767,7 +767,7 @@ public class Group7
      * Implements the Sieve of Atkin algorithm for generating prime numbers up to n.
      * <p>
      * Uses quadratic forms to identify prime candidates and eliminates composites.
-     * </p>
+     *  
      *
      * @param n the upper limit for prime number generation
      * @return a boolean array where {@code true} indicates a prime number
@@ -815,7 +815,7 @@ public class Group7
      * <p>
      * If the expression is invalid, the user is asked to re-enter it. The evaluation
      * process prints each simplification step to the console.
-     * </p>
+     *  
      */
     public static void StepByStepExpression()
     {
@@ -865,7 +865,7 @@ public class Group7
      *   <li>Empty parentheses (e.g., "()")</li>
      *   <li>Invalid starting or ending characters (e.g., "+3", "3x")</li>
      * </ul>
-     * </p>
+     *  
      *
      * @param expr the arithmetic expression entered by the user
      * @return {@code true} if the expression is valid; {@code false} otherwise
@@ -938,7 +938,7 @@ public class Group7
      * </ul>
      * Parentheses are evaluated first. Each simplification step can be printed
      * if the {@code printSteps} flag is set to {@code true}.
-     * </p>
+     *  
      *
      * @param expr the arithmetic expression to evaluate
      * @param printSteps if {@code true}, prints each step of the evaluation
@@ -1078,7 +1078,7 @@ public class Group7
      * <p>
      * The method handles invalid or overflow inputs, computes each statistical measure,
      * and prints the results with appropriate explanations.
-     * </p>
+     *  
      */
     public static void StatisticalArray()
     {
@@ -1233,7 +1233,7 @@ public class Group7
      * <p>
      * Returns 0 if any element is zero, and NaN if the product is negative
      * (i.e., when an odd number of elements are negative).
-     * </p>
+     *  
      *
      * @param arr  the array of double values
      * @param size the size of the array
@@ -1298,7 +1298,7 @@ public class Group7
      * and Cosine similarity between them.
      * <p>
      * The method validates all user inputs and ensures both arrays have the same dimension.
-     * </p>
+     *  
      */
     public static void TwoArraysDistance()
     {
@@ -1380,7 +1380,7 @@ public class Group7
      * <p>
      * Manhattan distance is defined as the sum of the absolute differences
      * between corresponding elements.
-     * </p>
+     *  
      *
      * @param a1   the first array
      * @param a2   the second array
@@ -1402,7 +1402,7 @@ public class Group7
      * <p>
      * Euclidean distance is defined as the square root of the sum of squared differences
      * between corresponding elements.
-     * </p>
+     *  
      *
      * @param a1   the first array
      * @param a2   the second array
@@ -1425,7 +1425,7 @@ public class Group7
      * <p>
      * Cosine similarity is defined as the dot product of the vectors divided by
      * the product of their magnitudes. Returns 0 if either array has a magnitude of zero.
-     * </p>
+     *  
      *
      * @param a1   the first array
      * @param a2   the second array
@@ -1464,7 +1464,7 @@ public class Group7
      *   <li>{@link #PVP} — Player vs. Player (two human players)</li>
      *   <li>{@link #PVC_RANDOM} — Player vs. Computer with random move selection</li>
      * </ul>
-     * </p>
+     *  
      */
     enum Mode
     {
@@ -1480,7 +1480,7 @@ public class Group7
      *   <li>1 = Player 1's piece</li>
      *   <li>2 = Player 2's piece</li>
      * </ul>
-     * </p>
+     *  
      *
      * @param rows the number of rows in the board
      * @param cols the number of columns in the board
@@ -1495,7 +1495,7 @@ public class Group7
      * Checks whether the specified column in the board is already full.
      * <p>
      * A column is considered full if its topmost cell (row 0) is not empty (i.e., not equal to 0).
-     * </p>
+     *  
      *
      * @param board the 2D game board array
      * @param c the column index to check
@@ -1513,7 +1513,7 @@ public class Group7
      * The function checks if the column index is valid and not full.
      * Starting from the bottom row, it finds the first empty cell (value 0)
      * and places the player's piece (1 or 2) there.
-     * </p>
+     *  
      *
      * @param board  the 2D array representing the game board, where 0 = empty, 1 = player 1, and 2 = player 2
      * @param c      the column index where the player wants to drop their piece
@@ -1544,7 +1544,7 @@ public class Group7
      * if at least one column is not full (i.e., has an empty space).
      * Otherwise, it returns {@code false}, indicating that the game board
      * is completely filled and no further moves can be made.
-     * </p>
+     *  
      *
      * @param board the 2D array representing the game board
      * @return {@code true} if there is at least one available move; {@code false} if all columns are full
@@ -1570,7 +1570,7 @@ public class Group7
      * </ul>
      * At the bottom of the printed board, column numbers are shown to
      * guide the player for input selection.
-     * </p>
+     *  
      *
      * @param board the 2D array representing the game board
      */
@@ -1615,7 +1615,7 @@ public class Group7
      * A winning move occurs when the player has four consecutive pieces aligned
      * horizontally, vertically, or diagonally (either down-right or up-right).
      * The function scans all possible directions on the board to detect such a sequence.
-     * </p>
+     *  
      *
      * @param board  the 2D array representing the game board, where 0 = empty, 1 = player 1, and 2 = player 2
      * @param player the player number (1 or 2) to check for a winning condition
@@ -1675,7 +1675,7 @@ public class Group7
      * The function iterates through all columns and adds the indices
      * of those that are not full, meaning a player can still drop a piece there.
      * This is typically used by AI decision logic or to validate player input.
-     * </p>
+     *  
      *
      * @param board the 2D array representing the game board
      * @return a list of column indices where a piece can legally be dropped
@@ -1696,7 +1696,7 @@ public class Group7
      * <p>
      * The method gathers all legal moves via {@link #legalMoves(int[][])}
      * and returns one uniformly at random.
-     * </p>
+     *  
      *
      * @param board the 2D array representing the game board
      * @return the chosen column index (0-based) among the legal moves
@@ -1723,9 +1723,8 @@ public class Group7
      * </ul>
      * The board uses <code>0</code> for empty, <code>1</code> for Player&nbsp;1 (X),
      * and <code>2</code> for Player&nbsp;2 (O).
-     * </p>
+     *  
      *
-     * @implNote Uses helper methods such as {@link #askInt(Scanner, String, int, int)},
      * {@link #printBoard(int[][])}, {@link #hasMoves(int[][])}, {@link #isColumnFull(int[][], int)},
      * {@link #aiMoveRandom(int[][])}, {@link #drop(int[][], int, int)}, and
      * {@link #isWinningMove(int[][], int)}. Clears the screen via {@code Main.clearScreen()}.
@@ -1878,7 +1877,7 @@ public class Group7
      * This method wraps {@link Thread#sleep(long)} and ignores any {@link InterruptedException}.
      * It is primarily used in the Connect Four game to add a small delay when the computer
      * makes a move, improving the user experience by making the game feel more natural.
-     * </p>
+     *  
      *
      * @param ms the duration to sleep in milliseconds
      */
@@ -1903,18 +1902,18 @@ public class Group7
      *     <li>High School Menu (Submenu C): Statistical Array, Two Arrays Distance</li>
      *     <li>Connect Four Menu (Submenu D): Play Connect Four game</li>
      * </ul>
-     * </p>
+     *  
      * The method loops continuously until the user chooses to exit.
      * <p>
      * User input is validated to handle invalid choices, overflow/underflow, and
      * attempts to enter text when numbers are expected.
-     * </p>
+     *  
      * Submenu options typically return to their menu after execution unless the
      * user chooses to go back to the main menu.
      * <p>
      * The method uses {@link #clearScreen()} to refresh the console for better UX,
      * and prompts the user to press Enter to continue between submenu executions.
-     * </p>
+     *  
      *
      * @param args command-line arguments (ignored in this program)
      */
@@ -2084,6 +2083,7 @@ public class Group7
     }
     
 }
+
 
 
 
