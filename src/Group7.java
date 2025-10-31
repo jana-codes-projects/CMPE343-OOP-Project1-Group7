@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Date;
 import java.util.Calendar;
 
-
+/**
+ * Main class for Group 7 OOP Project.
+ * Contains all menus, games, and utilities for the program.
+ */
 public class Group7
 {
     private static final int MAX_USER_INPUT = 60_000; // for safety array size
@@ -2055,3 +2058,4 @@ public class Group7
     }
     
 }
+
