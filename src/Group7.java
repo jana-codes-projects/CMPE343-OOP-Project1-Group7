@@ -619,10 +619,10 @@ public class Group7
             }
             if (n < 12)
                 System.out.println("Invalid input! Try again.");
-            else if (n > MAX_ARRAY_SIZE)
-                System.out.println("Input too large! Limit is " + MAX_ARRAY_SIZE);
+            else if (n > MAX_USER_INPUT)
+                System.out.println("Input too large! Limit is " + MAX_USER_INPUT);
 
-        } while (n < 12 || n > MAX_ARRAY_SIZE);
+        } while (n < 12 || n > MAX_USER_INPUT);
 
         // Algorithm 1: Eratosthenes
         long startE = System.nanoTime();
@@ -1168,9 +1168,9 @@ public class Group7
 
             if (size < 1)
                 System.out.println("Invalid input! Size must be at least 1.");
-            else if (size > MAX_ARRAY_SIZE)
+            else if (size > MAX_USER_INPUT)
             {
-                System.out.println("Requested size is too large; limit is " + MAX_ARRAY_SIZE + ".");
+                System.out.println("Requested size is too large; limit is " + MAX_USER_INPUT + ".");
                 size = 0;
             }
 
@@ -1576,7 +1576,7 @@ public class Group7
      */
     protected static void printBoard(int[][] board)
     {
-        Main.clearScreen();
+        clearScreen();
         int rows = board.length;
         int cols = board[0].length;
 
@@ -2083,6 +2083,7 @@ public class Group7
     }
     
 }
+
 
 
 
